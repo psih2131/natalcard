@@ -218,28 +218,28 @@
         </div>
     </section>
 
-    <section class="question sec">
-        <div class="q__abs"><img src="/assets/img/born_img-2.png" alt="img"></div>
-        <div class="question__content container">
-        <div class="question__wrapper">
-            <div class="question__abs"><img src="/assets/img/born_img-1.png" alt="img"></div>
-            <div class="question__info">
-            <h4 class="question__info-title">{{homePageData.value[0].acf.sekcziya_6_voprosy.zagolovok}}</h4>
-            <div class="question__info-items">
+        <section class="question sec">
+            <div class="q__abs"><img src="/assets/img/born_img-2.png" alt="img"></div>
+            <div class="question__content container">
+            <div class="question__wrapper">
+                <div class="question__abs"><img src="/assets/img/born_img-1.png" alt="img"></div>
+                <div class="question__info">
+                <h4 class="question__info-title">{{homePageData.value[0].acf.sekcziya_6_voprosy.zagolovok}}</h4>
+                <div class="question__info-items">
 
-                <div class="question__info-item" v-for="item in homePageData.value[0].acf.sekcziya_6_voprosy.spisok_voprosov" :key="item">
-                    <div class="question__info-wrapper">
-                        <div class="question__info-item-dot"><img src="/assets/img/svg/dot-icon.svg" alt="icon"></div>
-                        <p>{{item.tekst_voprosa}}</p>
+                    <div class="question__info-item" v-for="item in homePageData.value[0].acf.sekcziya_6_voprosy.spisok_voprosov" :key="item">
+                        <div class="question__info-wrapper">
+                            <div class="question__info-item-dot"><img src="/assets/img/svg/dot-icon.svg" alt="icon"></div>
+                            <p>{{item.tekst_voprosa}}</p>
+                        </div>
                     </div>
+                
                 </div>
-            
+                </div>
+                <div class="question__img"><img :src="homePageData.value[0].acf.sekcziya_6_voprosy.kartinka" alt="img"></div>
             </div>
             </div>
-            <div class="question__img"><img :src="homePageData.value[0].acf.sekcziya_6_voprosy.kartinka" alt="img"></div>
-        </div>
-        </div>
-    </section>
+        </section>
 
 
 

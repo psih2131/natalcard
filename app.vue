@@ -3,14 +3,16 @@
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
+
+    <preloaderSystem />
   </div>
 </template>
 
 
 <script>
 
-
-// import popupSystem from '@/components/popup-system/controller.vue'
+import { useCounterStore } from '@/stores/counter.js'
+import preloaderSystem from '@/components/preloader.vue'
 
 
 
@@ -18,12 +20,12 @@ export default {
     name: "horoskopeApp",
     data() {
         return {
-        
+          store: null
         }
     },
 
     components: {
-
+      preloaderSystem
     },
 
     methods: {
@@ -39,7 +41,8 @@ export default {
     },
 
     mounted(){
-
+      this.store = useCounterStore()
+      this.store.changePreloaderStatus(false)
     },
 
 }

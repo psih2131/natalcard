@@ -5,6 +5,7 @@ export const useCounterStore = defineStore('counter', () => {
     const urlQuery = ref('https://natalbase.ru')
     const allPosts = ref([])
     const allCategory = ref([])
+    const preloaderStatus = ref(true)
 
 
 
@@ -24,6 +25,11 @@ export const useCounterStore = defineStore('counter', () => {
         console.log('fgg', allPosts.value)
     }
 
+    function changePreloaderStatus(newValue) {
+        preloaderStatus.value = newValue
+        console.log('fgg', preloaderStatus.value)
+    }
+
 
 
 
@@ -32,9 +38,11 @@ export const useCounterStore = defineStore('counter', () => {
         urlQuery,
         allPosts,
         allCategory,
+        preloaderStatus,
 
         changeAllPosts,
         changeAllCategory,
+        changePreloaderStatus,
 
     }
 })

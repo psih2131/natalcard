@@ -3,7 +3,7 @@
         <div class="header__content container">
             <div class="header__logo-wrapper">
             <NuxtLink to="/" class="header__logo">
-                <img src="/assets/img/logo.png" alt="logo">                                                     
+                <img :src="mainData.logo" alt="logo">                                                     
             </NuxtLink>
             
             </div>
@@ -22,6 +22,18 @@
                     </NuxtLink>
                 </li>
 
+                <li>
+                  <a  @click="scrollToSection('reviews')">Отзывы  </a>  
+                </li>
+
+                <li>
+                  <a  @click="scrollToSection('how-work')">Как работает</a>  
+                </li>
+
+                <li>
+                  <a  @click="scrollToSection('about-us')">О нас</a>  
+                </li>
+
 
             </ul>
             </nav>
@@ -36,12 +48,29 @@
             <div class="header__mobile" :class="{ 'active': isBurgerActive }">
             <nav class="header__nav-mobile">
                 <ul class="header__nav-list">
-                <li><a href="#">Главная</a></li>
-                <li><a href="#">Как работает</a></li>
-                <li><a href="#">Отзывы</a></li>
-                <li><a href="#">Ответы</a></li>
-                <li><a href="post.html">Контакты</a></li>
-                <li><a href="blog.html">Блог</a></li>
+                  <li>
+                    <NuxtLink to="/" @click="closeMeny()">
+                          Главная                                                        
+                      </NuxtLink>
+                  </li>
+
+                  <li>
+                      <NuxtLink to="/our-blog/" @click="closeMeny()">
+                          Блог                                                        
+                      </NuxtLink>
+                  </li>
+
+                  <li>
+                    <a  @click="scrollToSection('reviews') , closeMeny()">Отзывы  </a>  
+                  </li>
+
+                  <li>
+                    <a  @click="scrollToSection('how-work'), closeMeny()">Как работает</a>  
+                  </li>
+
+                  <li>
+                    <a  @click="scrollToSection('about-us'), closeMeny()">О нас</a>  
+                  </li>
                 </ul>
             </nav>
             </div>
@@ -58,11 +87,17 @@ const isBurgerActive = ref(false);
 
 // Функция для переключения состояния бургерного меню
 const toggleMenu = () => {
+  
   isBurgerActive.value = !isBurgerActive.value;
   
   // Переключаем класс "lock" на body
   document.body.classList.toggle('lock', isBurgerActive.value);
 };
+
+function closeMeny(){
+  isBurgerActive.value = false
+  document.body.classList.toggle('lock', isBurgerActive.value);
+}
 
 
 // Функция для проверки прокрутки
@@ -74,6 +109,14 @@ const checkScroll = () => {
   }
 };
 
+
+function scrollToSection(sectionId) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' }); // Плавный скроллинг
+    }
+  }
+
 onMounted(() => {
   // Добавляем обработчик события scroll
   window.addEventListener('scroll', checkScroll);
@@ -83,4 +126,12 @@ onBeforeUnmount(() => {
   // Убираем обработчик события при размонтировании компонента
   window.removeEventListener('scroll', checkScroll);
 });
+
+
+
+ // props
+ const props = defineProps({
+  mainData: Object,
+      // postAllCategory: Object,
+  })
 </script>

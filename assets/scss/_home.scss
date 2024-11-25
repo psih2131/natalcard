@@ -48,12 +48,26 @@
   right: 0;
   width: 358px;
   height: 358px;
+  animation: spin 65s linear infinite;
 
   img {
     width: 100%;
     height: 100%;
     display: block;
     object-fit: cover;
+  }
+}
+
+/* Анимация вращения */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+    /* Начальная точка */
+  }
+
+  to {
+    transform: rotate(360deg);
+    /* Конечная точка */
   }
 }
 
@@ -300,12 +314,28 @@
   top: 23px;
   width: 626px;
   height: 626px;
+  animation: spi2 60s linear infinite;
+  /* 2s - продолжительность, linear - равномерная скорость, infinite - бесконечно */
 
   img {
     width: 100%;
     height: 100%;
     display: block;
     object-fit: cover;
+  }
+
+}
+
+/* Анимация вращения */
+@keyframes spi2 {
+  from {
+    transform: rotate(0deg);
+    /* Начальная точка */
+  }
+
+  to {
+    transform: rotate(360deg);
+    /* Конечная точка */
   }
 }
 
@@ -571,12 +601,28 @@
   right: -50px;
   bottom: -55px;
   z-index: 1;
+  animation: spin3 60s linear infinite;
+  /* 2s - продолжительность, linear - равномерная скорость, infinite - бесконечно */
 
   img {
     width: 100%;
     height: 100%;
     display: block;
     object-fit: cover;
+  }
+
+}
+
+/* Анимация вращения */
+@keyframes spin3 {
+  from {
+    transform: rotate(0deg);
+    /* Начальная точка */
+  }
+
+  to {
+    transform: rotate(360deg);
+    /* Конечная точка */
   }
 }
 
@@ -914,7 +960,14 @@
     width: 150px;
     height: 150px;
     bottom: 41px;
+
+
+    img {
+      display: block;
+    }
   }
+
+
 
   .born__content {
     .born__slider {

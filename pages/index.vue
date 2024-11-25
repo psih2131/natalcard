@@ -13,7 +13,7 @@
                 <div class="first__info">
                     <h1 class="first__title">{{homePageData.value[0].acf.первая_секция.заголовок}}</h1>
                     <p class="first__text">{{homePageData.value[0].acf.первая_секция.текст}}</p>
-                    <a href="#" class="first__btn main__btn">{{homePageData.value[0].acf.первая_секция.текст_кнопки}}</a>
+                    <button @click="scrollToSection('form')" class="first__btn main__btn">{{homePageData.value[0].acf.первая_секция.текст_кнопки}}</button>
                 </div>
                 <div class="first__abs"><img src="/assets/img/head_abs.png" alt="abs"></div>
             </div>
@@ -73,7 +73,7 @@
 
 
         <!-- sec 3 work  -->
-        <section class="work">
+        <section class="work" id="how-work">
             <div class="work__content container">
             <div class="work__abs"><img src="/assets/img/born_img-1.png" alt="img"></div>
             <h3 class="work__title main__title">{{homePageData.value[0].acf.sekcziya_3_kak_eto_rabotaet.zagolovok}}</h3>
@@ -110,9 +110,9 @@
 
 
 
+        <!-- sec 4 form -->
 
-
-    <section class="card sec" :style="{ backgroundImage: `url(${homePageData.value[0].acf.sekcziya_4_forma.fon})`, backgroundSize: '0px' }">
+    <section id="form" class="card sec" :style="{ backgroundImage: `url(${homePageData.value[0].acf.sekcziya_4_forma.fon})`, backgroundSize: '0px' }">
 
         <div class="card__wrapper">
           <div class="card__abs"><img src="/assets/img/form_abs.png" alt="img"></div>
@@ -142,8 +142,8 @@
       </section>
 
 
-
-    <section class="review sec">
+      <!-- reciews sec -->
+    <section class="review sec" id="reviews">
         <div class="review__content container">
 
         <div class="review__abs"><img src="/assets/img/born_img-4.png" alt="img"></div>
@@ -197,18 +197,6 @@
                 </swiper>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev review__slider-prev"></div>
-
-
-        
-               
-
-      
-
-
-                   
-
-
-
                
             </div>
 
@@ -243,7 +231,7 @@
 
 
 
-        <section class="mission sec">
+        <section class="mission sec" id="about-us">
             <div class="mission__content container">
             <div class="mission__img"><img :src="homePageData.value[0].acf.sekcziya_7_missiya_proekta.izobrazhenie" alt="img"></div>
             <div class="mission__info">
@@ -323,6 +311,14 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
+  },
+  methods: {
+    scrollToSection(sectionId) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' }); // Плавный скроллинг
+      }
+    }
   },
   setup() {
     const loadStatus = ref(false);

@@ -3,10 +3,8 @@
         <div class="footer__content container">
           <div class="footer__up">
             <div class="footer__logo-wrapper">
-              <a href="#" class="footer__logo"><img src="/assets/img/logo.png" alt="logo"></a>
-              <p class="footer__logo-text">Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать
-                несколько абзацев более менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить
-                навык публичных выступлений в домашних условиях.
+              <a href="#" class="footer__logo"><img :src="mainData.logo" alt="logo"></a>
+              <p class="footer__logo-text">{{mainData.futer_opisanie }}
               </p>
             </div>
             <div class="footer__info">
@@ -14,23 +12,41 @@
                 <h4 class="footer__title">Навигация</h4>
                 <nav class="footer__nav">
                   <ul class="footer__nav-list">
-                    <li><a href="#">Главная</a></li>
-                    <li><a href="#">Отзывы</a></li>
-                    <li><a href="#">О нас</a></li>
-                    <li><a href="#">Цена</a></li>
+                    <li>
+                      <NuxtLink to="/">
+                          Главная                                                        
+                      </NuxtLink>
+                  </li>
+  
+                  <li>
+                      <NuxtLink to="/our-blog/">
+                          Блог                                                        
+                      </NuxtLink>
+                  </li>
+  
+                  <li>
+                    <a  @click="scrollToSection('reviews')">Отзывы  </a>  
+                  </li>
+  
+                  <li>
+                    <a  @click="scrollToSection('how-work')">Как работает</a>  
+                  </li>
+  
+                  <li>
+                    <a  @click="scrollToSection('about-us')">О нас</a>  
+                  </li>
                   </ul>
                 </nav>
               </div>
               <div class="footer__contacts">
                 <h4 class="footer__title">Контакты</h4>
-                <div class="footer__item">
-                  <p class="footer__item-title">Телефон</p>
-                  <a href="#" class="footer__item-link">8 (800) 555-39-42</a>
+
+                <div class="footer__item" v-for="item in mainData.kontakty" :key="item">
+                  <p class="footer__item-title">{{item.nazvanie}}</p>
+                  <a :href="item.bek" class="footer__item-link">{{item.vizual}}</a>
                 </div>
-                <div class="footer__item mar">
-                  <p class="footer__item-title">Почта</p>
-                  <a href="#" class="footer__item-link">medinvest@gmail.com</a>
-                </div>
+
+ 
                 <div class="footer__btns-wrapper">
                   <a href="#" class="footer__login-btn main__btn">Вход</a>
                   <a href="#" class="footer__reg-btn main__btn">Регистрация</a>
@@ -39,47 +55,47 @@
             </div>
           </div>
           <div class="footer__down">
-            <p class="footer__razrab">© 2024 | <a href="#">spacesdev.com</a></p>
+            <p class="footer__razrab">© 2024 | nordface</p>
             <div class="footer__links">
-              <a href="#" class="footer__link">Политика конфиденцальности</a>
-              <a href="#" class="footer__link">Обработка персональных данных</a>
+              
+                <NuxtLink v-for="item in currentList(pagesList)" :key="item" :to="`/docs/${item.slug}`" class="footer__link" >
+                  {{item.title.rendered}}                                                        
+                </NuxtLink>
+     
+              
+              
+
             </div>
           </div>
         </div>
     </footer>
 </template>
 
-<script>
-// import component__header from '@/components/header.vue'
-// import component__footer from '@/components/footer.vue'
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 
-export default {
-    data() {
-        return {
+function scrollToSection(sectionId) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' }); // Плавный скроллинг
+    }
+  }
 
-        }
-    },
+ // props
+ const props = defineProps({
+  mainData: Object,
+  pagesList: Object,
+      // postAllCategory: Object,
+  })
 
-    components: {
-        // component__header,
-        // component__footer,
-    },
 
-    methods: {
-
-    },
-
-    computed: {
-
-    },
-
-    watch: {
-
-    },
-
-    mounted(){
-
-    },
-
-}
+  function currentList(data){
+    let newPageList = []
+    for(let i = 0; i < data.length; i++){
+      if(data[i].template == "pages/tipus.php"){
+        newPageList.push(data[i])
+      }
+    }
+    return newPageList
+  }
 </script>

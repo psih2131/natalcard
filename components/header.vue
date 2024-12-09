@@ -38,9 +38,9 @@
             </ul>
             </nav>
             <div class="header__btns-wrapper">
-            <a href="#" class="login__btn main__btn">Вход</a>
-            <a href="#" class="reg__btn">Регистрация</a>
-            <div class="header__burger" :class="{ 'active': isBurgerActive }" 
+            <a href="#" class="login__btn main__btn"  @click="openLogin()">Вход</a>
+            <a href="#" class="reg__btn" @click="openRegistration()">Регистрация</a>
+            <div class="header__burger"  :class="{ 'active': isBurgerActive }" 
             @click="toggleMenu">
                 <span></span>
             </div>
@@ -80,11 +80,16 @@
 </template>
 
 <script setup>
+import { useCounterStore } from '@/stores/counter'
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
+//DATA
 const isScrolled = ref(false);
 const isBurgerActive = ref(false);
+const store = useCounterStore()
 
+
+//METHODS 
 // Функция для переключения состояния бургерного меню
 const toggleMenu = () => {
   
@@ -97,6 +102,16 @@ const toggleMenu = () => {
 function closeMeny(){
   isBurgerActive.value = false
   document.body.classList.toggle('lock', isBurgerActive.value);
+}
+
+function openRegistration(){
+  store.changePopupStatus(true)
+  store.changePopupName('popup-registration')
+}
+
+function openLogin(){
+  store.changePopupStatus(true)
+  store.changePopupName('popup-login')
 }
 
 
@@ -117,9 +132,14 @@ function scrollToSection(sectionId) {
     }
   }
 
+
+
+//HOOKS
 onMounted(() => {
   // Добавляем обработчик события scroll
   window.addEventListener('scroll', checkScroll);
+  
+  
 });
 
 onBeforeUnmount(() => {

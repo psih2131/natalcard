@@ -5,6 +5,8 @@
         <slot/>
     
         <component__footer v-if="allData && pagesWp" :mainData="allData" :pagesList="pagesWp" />
+
+        <component__popup_system />
     </div>
 </template>
 
@@ -14,6 +16,8 @@
     //components
     import component__header from '@/components/header.vue'
     import component__footer from '@/components/footer.vue'
+
+    import component__popup_system from '@/components/popup-system/popup-system-controller.vue'
 
     //data
     const {data: allData} = await useFetch('https://natalbase.ru/wp-json/acf/v3/options')

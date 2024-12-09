@@ -33,11 +33,18 @@ export default {
     },
 
     computed: {
-
+      watchLogitStatus() {
+        const store = useCounterStore()
+        return store.autorisationStatus
+      },
     },
 
     watch: {
-
+      watchLogitStatus(newValue, oldValue){
+        if(newValue == true){
+          console.log('autorisation true')
+        }
+      }
     },
 
     mounted(){

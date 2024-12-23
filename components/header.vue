@@ -38,8 +38,22 @@
             </ul>
             </nav>
             <div class="header__btns-wrapper">
-            <a href="#" class="login__btn main__btn"  @click="openLogin()">Вход</a>
-            <a href="#" class="reg__btn" @click="openRegistration()">Регистрация</a>
+              <template v-if="store.autorisationStatus ">
+                <NuxtLink to="/account/" class="header__accoutn header-account">
+                  <p class="header-account__name">Аккаунт</p>
+                  <div class="header-account__photo-wrapper">
+                   <img src="@/assets/img/account.png" alt="">
+                  </div>
+                </NuxtLink>
+              </template>
+
+              <template v-else>
+                <a href="#" class="login__btn main__btn"  @click="openLogin()">Вход</a>
+                <a href="#" class="reg__btn" @click="openRegistration()">Регистрация</a>
+              </template>
+              
+
+
             <div class="header__burger"  :class="{ 'active': isBurgerActive }" 
             @click="toggleMenu">
                 <span></span>
@@ -81,7 +95,8 @@
 
 <script setup>
 import { useCounterStore } from '@/stores/counter'
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { ref, onMounted, onBeforeUnmount, computed, watch  } from 'vue';
+
 
 //DATA
 const isScrolled = ref(false);
@@ -138,6 +153,11 @@ function scrollToSection(sectionId) {
 onMounted(() => {
   // Добавляем обработчик события scroll
   window.addEventListener('scroll', checkScroll);
+  let tokenStatusStore = localStorage.getItem('jwtToken')
+  if(tokenStatusStore && tokenStatusStore != ''){
+    store.changeAutorisationStatus(true)
+  }
+
   
   
 });

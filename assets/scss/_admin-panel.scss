@@ -1,0 +1,377 @@
+.form-create-natal-chart__title {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.form-create-natal-chart {
+    padding: 30px 20px;
+    border: solid 2px #f0f0f0;
+}
+
+.form-create-natal-chart__form-row {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.form-create-natal-chart__input-wrapper {
+    width: 250px;
+    margin-right: 20px;
+
+    input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        background: #fff;
+        border: none;
+    }
+}
+
+.form-create-natal-chart__input-wrapper-title {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.account-natal-front-sec {
+    padding-top: 160px;
+    padding-bottom: 180px;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .first__abs {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 430px;
+        height: 430px;
+    }
+}
+
+.account-natal-front-sec__img-wrapper {
+    width: 430px;
+}
+
+.account-natal-front-sec__info {
+    width: 710px;
+}
+
+.account-natal-front-sec__title {
+    font-size: 45px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 40px;
+}
+
+.account-natal-front-sec__subtitle {
+    color: rgba(255, 255, 255, 0.80);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.account-natal-data-sec {
+    margin-bottom: 180px;
+
+    .container {
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 40px 55px;
+        background: #18181A;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        background-image: url('/assets/img/head_bg.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+.account-natal-data-sec__title {
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.account-natal-data-sec__row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.account-natal-data-sec__form {
+    width: 400px;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(48, 48, 49, 0.8);
+    backdrop-filter: blur(2px);
+    border-radius: 20px;
+}
+
+.account-natal-data-sec__time-wrapper-title {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.account-natal-data-sec__time-wrapper {
+    margin-bottom: 20px;
+    transition: all ease 0.3s;
+
+    .dp__input_wrap {
+        z-index: 1;
+    }
+
+    input {
+        border-radius: 6px;
+        background: #ECEFF5;
+        width: 100%;
+        border: none;
+        transition: all 0.5s ease;
+
+        color: rgba(22, 22, 24, 0.8);
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        padding: 15px 30px 15px 15px;
+    }
+
+    .dp__input_icon {
+        top: calc(50% - (16px / 2));
+        padding: 0;
+        left: auto;
+        right: 15px;
+        transform: translateY(0)
+    }
+
+    .dp--clear-btn {
+        top: calc(50% - (16px / 2));
+        transform: translateY(0);
+        right: 40px;
+
+        svg {
+            padding: 0;
+        }
+    }
+}
+
+.account-natal-data-sec__forged-time {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    opacity: 0.5;
+    transition: all ease 0.3s;
+}
+
+.account-natal-data-sec__forget {
+    font-size: 14px;
+
+}
+
+.forgetTime {
+    opacity: 0.5;
+    position: relative;
+
+    &::before {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        z-index: 50;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.forgetTimeChckbox {
+    opacity: 1;
+}
+
+.location-wrapper__input-wrapper-search-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.location-wrapper__input-container {
+    position: relative;
+    width: calc(100% - 60px);
+    display: flex;
+    align-items: center;
+
+    input {
+        border-radius: 6px;
+        background: #ECEFF5;
+        width: 100%;
+        border: none;
+        transition: all 0.5s ease;
+
+        color: rgba(22, 22, 24, 0.8);
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        padding: 15px 30px 15px 15px;
+    }
+}
+
+.location-wrapper__input-container-remove {
+    position: absolute;
+    right: 10px;
+    width: 20px;
+    cursor: pointer;
+
+    svg {
+        width: 100%;
+        display: block;
+
+        path {
+            fill: #8E9093;
+        }
+    }
+}
+
+.location-wrapper__row-cordinats {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.location-wrapper__current-cordinats-inp {
+    width: calc(50% - 10px);
+
+    input {
+        border-radius: 6px;
+        background: #ECEFF5;
+        width: 100%;
+        border: none;
+        transition: all 0.5s ease;
+
+        color: rgba(22, 22, 24, 0.8);
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        padding: 15px 30px 15px 15px;
+    }
+}
+
+.location-wrapper__input-wrapper-search-btn {
+    width: 49px;
+    height: 49px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    text-align: center;
+    background: linear-gradient(180deg, #716CF0 0%, #5853E3 100%);
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    font-size: 14px;
+    border-radius: 8px;
+    transition: all 0.5s ease;
+
+    svg {
+        path {
+            fill: $white
+        }
+    }
+
+}
+
+.location-wrapper__input-wrapper {
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 20;
+}
+
+.account-natal-data-sec__btn {
+    width: 100%;
+    padding-top: 20px;
+
+    button {
+        width: 100%;
+        padding: 15px 0;
+        text-align: center;
+        background: linear-gradient(180deg, #716CF0 0%, #5853E3 100%);
+        color: #fff;
+        font-weight: 500;
+        border: none;
+        font-size: 14px;
+        border-radius: 8px;
+        transition: all 0.5s ease;
+        display: block;
+    }
+}
+
+.error-text-form {
+    margin-top: 5px;
+    font-size: 12px;
+    color: $red2;
+    width: 100%;
+}
+
+.location-wrapper__search-result {
+    position: absolute;
+    left: 0;
+    top: 49px;
+    background: #ECEFF5;
+    width: 290px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.location-wrapper__search-result-title {
+    color: rgba(22, 22, 24, 0.60);
+    padding: 10px 15px;
+    font-size: 14px;
+}
+
+.location-wrapper__search-result-list-value {
+    padding: 10px 15px;
+    color: rgba(22, 22, 24, 1);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: solid 1px #ccc;
+
+    &:last-child {
+        border: none;
+    }
+}
+
+.location-wrapper__search-result-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.account-natal-data-sec__info-wrapper {
+    display: flex;
+    align-items: flex-start;
+}
+
+.natal-history {
+    margin-right: 30px;
+    padding: 25px;
+    width: 400px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(48, 48, 49, 0.8);
+    backdrop-filter: blur(2px);
+    border-radius: 20px;
+}
+
+.natal-history__title {
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}

@@ -2,38 +2,41 @@
     <div class="popup popup-registration">
         <div class="popup__close-btn" @click="closePopupStatus">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.694 7.30602C17.102 7.71405 17.102 8.37559 16.694 8.78361L13.4783 11.9993L16.694 15.2164C17.102 15.6244 17.102 16.286 16.694 16.694C16.286 17.102 15.6244 17.102 15.2164 16.694L12.0007 13.4769L8.78361 16.694C8.37559 17.102 7.71405 17.102 7.30602 16.694C6.89799 16.286 6.89799 15.6244 7.30602 15.2164L10.5231 11.9993L7.30602 8.78361C6.89799 8.37559 6.89799 7.71405 7.30602 7.30602C7.71405 6.89799 8.37559 6.89799 8.78361 7.30602L12.0007 10.5217L15.2164 7.30602C15.6244 6.89799 16.286 6.89799 16.694 7.30602Z" fill="#7E84A3"/>
-            </svg>  
+                <path d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z" fill="#fff"/>
+            </svg>
+                 
         </div>
 
-      <p>Авторизация</p>
+        <p class="popup-registration__title">Вход в акаунт</p>
+        <p class="popup-registration__subtitle">Добро пожаловать</p>
 
-      <br><br>
+        <component__input_field 
+        :titleInput="'Логин'"
+        :placeholderSet="'Укаэите ваш логин'"
+        :setValue="userName"
+        @getValue="userName = $event"
+        />
 
-      <div class="field-input">
-        <p class="field-input__title">userName</p>
-        <div class="field-input__wrapper">
-            <input type="text" placeholder="userName" v-model="userName">
-        </div>
-      </div>
 
-      <br><br>
-
-      <div class="field-input">
-        <p class="field-input__title">пароль</p>
-        <div class="field-input__wrapper">
-            <input type="password" placeholder="пароль" v-model="password">
-        </div>
-      </div>
-
-      <br><br>
-
+        <component__input_field 
+        :titleInput="'Пароль'"
+        :placeholderSet="'Введите пароль'"
+        :setValue="password"
+        :typeInp="'password'"
+        @getValue="password = $event"
+        />
+    
+ 
       <div class="button-popup-wrapper">
-        <button @click="autorisationServerRequest">Авторизация</button>
+        <button class="button-popup" @click="autorisationServerRequest">Авторизация</button>
       </div>
 
 
-      <p style="color:red;">{{errorText}}</p>
+      <p class="popup-registration__error" v-if="errorText">{{errorText}}</p>
+
+      <div class="popup-registration__popup-link">
+        <div class="popup-registration__popup-link-litle" @click="goToRegistrAccount()">У мeня нет акаунта, хочу зарегистрирыватся</div>
+      </div>
 
 
     </div>
@@ -43,7 +46,7 @@
 <script>
 
 import { useCounterStore } from '@/stores/counter'
-
+import component__input_field from '@/components/input-field.vue'
 
 
 
@@ -65,12 +68,17 @@ props: {
 },
 
 components: {
-
+    component__input_field
 },
 
 methods: {
     closePopupStatus(){
+      
        this.store.changePopupStatus(false)
+    },
+
+    goToRegistrAccount(){
+        this.store.changePopupName('popup-registration')
     },
 
 
@@ -112,9 +120,11 @@ methods: {
                 this.$router.push('/account')
                 alert('Успешная авторизация user:', nameUser)
                 this.closePopupStatus()
+                this.errorText = null
             }
             else{
                 alert('ошибка при авторизации')
+                this.errorText = 'ошибка при авторизации, проверте введенные данные'
             }
 
         })

@@ -169,7 +169,7 @@ methods: {
             {
               client_id: '981e67812f0a4543bf818fde759d3069',
               response_type: 'token',
-              redirect_uri: 'https://natalnaya-karta-online.ru/',
+              redirect_uri: 'https://natalnaya-karta-online.ru/test',
             },
             'https://natalnaya-karta-online.ru',
             {

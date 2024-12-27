@@ -6,29 +6,76 @@
           <div class="account-natal-front-sec__info">
             <h1 class="account-natal-front-sec__title">Открой свое Истинное "Я" С помощью Звезд</h1>
             <p class="account-natal-front-sec__subtitle">Натальная карта — это астрологическая карта, созданная на основе даты, времени и места вашего рождения. Она отражает расположение планет в момент вашего появления на свет, что оказывает значительное влияние на вашу личность, цели, карьеру, отношения и многое другое. Каждый человек уникален, и ваша натальная карта — это ключ к пониманию своего внутреннего мира и потенциала</p>
+            <NuxtLink to="/account/user-settings">
+              настройки пользывателя                                                        
+            </NuxtLink>
           </div>
           <div class="account-natal-front-sec__img-wrapper">
             <div class="first__abs"><img src="/assets/img/head_abs.png" alt="abs"></div>
           </div>
+
+          
         </div>
       </section>
 
-      <section class="account-natal-data-sec">
+      
+
+
+
+      <section class="natal-chart-list" v-if="userNatalChartsTableListStatusView == true">
+        <div class="container">
+          <div class="natal-chart-list__wrapper">
+            <div class="natal-chart-list__header">
+              <h2 class="natal-chart-list__title">Ваши натальные карты</h2>
+              <button class="natal-chart-list__btn-create" @click="userNatalChartsTableListStatusView = false, loadStatus = false">Расчитать новую карту</button>
+            </div>
+            <div class="natal-chart-list__table">
+   
+              <div  v-for="(item, index) in userNatalChartList" :key="index" :class="{'natal-chart-list__table-element-activ': userNatalChartListActivIndex == index}" class="natal-chart-list__table-element">
+                <div class="natal-chart-list__table-element-row-data">
+                  <div class="natal-chart-list__table-element-col-1 dt-col">
+                    <p class="natal-chart-list__table-element-text-data">id: <span>{{item.id}}</span></p>
+                  </div>
+                  <div class="natal-chart-list__table-element-col-2 dt-col">
+                    <p class="natal-chart-list__table-element-text-data">
+                      дата рождения: <span v-if="item.acf.data_i_vremya">{{formatDateTime(item.acf.data_i_vremya)}}</span>
+                    </p>
+                  </div>
+                  <div class="natal-chart-list__table-element-col-3 dt-col">
+                    <p class="natal-chart-list__table-element-text-data">
+                      долгота: <span v-if="item.acf.kordinaty && item.acf.kordinaty.lng">{{item.acf.kordinaty.lng}}</span>
+                    </p>
+                  </div>
+                  <div class="natal-chart-list__table-element-col-3 dt-col">
+                    <p class="natal-chart-list__table-element-text-data">
+                      широта: <span v-if="item.acf.kordinaty && item.acf.kordinaty.lat">{{item.acf.kordinaty.lat}}</span>
+                  </p>
+                  </div>
+                </div>
+                <div class="natal-chart-list__table-element-btn-row">
+
+                  <button v-if="userNatalChartListActivIndex == index" class="natal-chart-list__table-element-select-btn-activ">Активная</button>
+                  <button v-else class="natal-chart-list__table-element-select-btn" @click="loadCurrentNatalChartSelected(index, item)">Загрузить</button>
+
+                  <div class="natal-chart-list__table-element-del-btn" @click="deleteNatalChartServerRequest(item.id)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7 4C7 2.89543 7.89543 2 9 2H15C16.1046 2 17 2.89543 17 4V6H18.9897C18.9959 5.99994 19.0021 5.99994 19.0083 6H21C21.5523 6 22 6.44772 22 7C22 7.55228 21.5523 8 21 8H19.9311L19.0638 20.1425C18.989 21.1891 18.1182 22 17.0689 22H6.93112C5.88184 22 5.01096 21.1891 4.9362 20.1425L4.06888 8H3C2.44772 8 2 7.55228 2 7C2 6.44772 2.44772 6 3 6H4.99174C4.99795 5.99994 5.00414 5.99994 5.01032 6H7V4ZM9 6H15V4H9V6ZM6.07398 8L6.93112 20H17.0689L17.926 8H6.07398ZM10 10C10.5523 10 11 10.4477 11 11V17C11 17.5523 10.5523 18 10 18C9.44772 18 9 17.5523 9 17V11C9 10.4477 9.44772 10 10 10ZM14 10C14.5523 10 15 10.4477 15 11V17C15 17.5523 14.5523 18 14 18C13.4477 18 13 17.5523 13 17V11C13 10.4477 13.4477 10 14 10Z" fill="#6F6AC3"/>
+                    </svg>                      
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="natalChartMainData" class="account-natal-data-sec" v-else>
         <div class="container">
           <div class="account-natal-data-sec__icon-wrapper"></div>
 
           <div class="account-natal-data-sec__info-wrapper">
-            <div class="account-natal-data-sec__natal-history natal-history">
-              <h2 class="natal-history__title">Ваши натальные карты</h2>
 
-              <ul class="natal-history__list">
-                <li class="natal-history__list-val" v-for="item in userNatalChartList" :key="item">
-                  {{item.id}} {{ item.date }}
-                </li>
-              </ul>
-
-              
-            </div>
             <div class="account-natal-data-sec__form">
               <h2 class="account-natal-data-sec__title">Заполните данные для расчета</h2>
               <div class="account-natal-data-sec__data-wrapper">
@@ -161,6 +208,206 @@
       </section>
 
 
+
+      <section class="natal-chart-sec" v-if="loadStatus">
+        <div class="container">
+          <div class="natal-chart-sec__main-row">
+            <div class="natal-chart-sec__main-info">
+              <h2 class="natal-chart-sec__title">Положения планет</h2>
+
+              <div class="planet-position-table">
+                <div class="planet-position-table__row planet-position-table__header-row">
+                  <div class="planet-position-table__col-planets">Планета</div>
+                  <div class="planet-position-table__col-position">Положение</div>
+                  <div class="planet-position-table__col-dome">Дом</div>
+                </div>
+
+                <div class="planet-position-table__row " v-for="item in planets " :key="item">
+                  <div class="planet-position-table__col-planets">
+                    <img :src="item.img">
+                    <p class="planet-position-table__col-planets-name">{{item.name}}</p>
+                  </div>
+                  <div class="planet-position-table__col-position">
+                    <p class="planet-position-table__col-position-text">
+                      {{getZodiacV1(item.lon , item.name)}}  {{ item.lon.toFixed(1) }}°
+                    </p>
+                  </div>
+                  <div class="planet-position-table__col-dome">
+                    <p class="planet-position-table__col-dom-text">
+                      10
+                    </p>
+                  </div>
+                </div>
+              </div>
+            
+            </div>
+            <div class="natal-chart-sec__natal-chart-svg">
+              
+              <svg :width="width" :height="height" :viewBox="viewBox">
+                <!-- Circle representing the zodiac -->
+                <circle cx="250" cy="250" r="200" stroke="url(#gradient)" stroke-width="4" fill="transparent" />
+              
+                <!-- Gradients for lines and aspects -->
+                <defs>
+                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color: #ff7e5f; stop-opacity: 1" />
+                    <stop offset="100%" style="stop-color: #feb47b; stop-opacity: 1" />
+                  </linearGradient>
+                  <linearGradient id="aspect-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color: #8e44ad; stop-opacity: 0.7" />
+                    <stop offset="100%" style="stop-color: #f39c12; stop-opacity: 0.7" />
+                  </linearGradient>
+                </defs>
+              
+                <!-- Drawing the 12 zodiac signs -->
+                <g v-for="(sign, index) in zodiacSigns" :key="index">
+                  <line 
+                    :x1="250" 
+                    :y1="250" 
+                    :x2="getX(index)" 
+                    :y2="getY(index)" 
+                    stroke="#ccc" 
+                    stroke-width="1" 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round" />
+                  
+                  <!-- Replace text with icons -->
+
+                  <circle 
+                      :cx="getX(index)" 
+                      :cy="getY(index)" 
+                      r="15" 
+                      fill="white" 
+                      stroke="black" 
+                      stroke-width="1" 
+                    />
+                  <image 
+              
+                    :x="getX(index) - 10" 
+                    :y="getY(index) - 10" 
+                    width="20" 
+                    height="20" 
+                    :href="`/_nuxt/assets/img/zodiac/${sign}.svg`" />
+                </g>
+                
+                <g v-for="(aspect, index) in aspects" :key="index">
+                  <!-- Aspects -->
+                  <line
+                  class="aspect-line"
+                  :key="index"
+                  :x1="getPlanetX(aspect.planet1.lon)"
+                  :y1="getPlanetY(aspect.planet1.lon)"
+                  :x2="getPlanetX(aspect.planet2.lon)"
+                  :y2="getPlanetY(aspect.planet2.lon)"
+                  stroke="url(#aspect-gradient)"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-opacity="0.8" />
+
+
+                
+                  
+                  <text 
+                    :x="(getPlanetX(aspect.planet1.lon) + getPlanetX(aspect.planet2.lon)) / 2"
+                    :y="(getPlanetY(aspect.planet1.lon) + getPlanetY(aspect.planet2.lon)) / 2"
+                    class="aspect-text"
+                    text-anchor="middle" 
+                 
+                    font-family="'Arial', sans-serif" 
+                    font-size="10" 
+                    fill="#333" 
+                    font-weight="400">
+                    {{ aspect.planet1.name }} - {{ aspect.planet2.name }}<br>
+                    тип связи: {{ aspect.type }}
+                  </text>
+                  
+
+                </g>
+
+                  
+                <!-- Planets -->
+                <g v-for="(planet, index) in planets" :key="index">
+                  <circle 
+                  :cx="getPlanetX(planet.lon)" 
+                  :cy="getPlanetY(planet.lon)" 
+                  r="12" :fill="planet.color" 
+                  stroke="#fff" stroke-width="3"
+                  class="planet-circle"
+                  />
+                  <text 
+                    :x="getPlanetX(planet.lon)" 
+                    :y="getPlanetY(planet.lon)" 
+                    class="planet-text"
+                    text-anchor="middle" 
+                    dy="-20"
+                    font-family="'Arial', sans-serif" 
+                    font-size="14" 
+                    fill="#333" 
+                    font-weight="bold">
+                    {{ planet.name }}
+                  </text>
+                </g>
+              
+              
+              </svg>
+              
+              
+            </div>
+          </div>
+
+
+
+
+          <div class="account-natal-data-sec__prognoz-container natal-prognoz">
+            <ul class="natal-prognoz__nav">
+              <li class="natal-prognoz__nav-element" @click="curentTabButon = 1" :class="{'natal-prognoz__nav-element_activ': curentTabButon == 1}">Планеты в Знаках</li>
+              <li class="natal-prognoz__nav-element" @click="curentTabButon = 2" :class="{'natal-prognoz__nav-element_activ': curentTabButon == 2}">Планеты в домах</li>
+            </ul>
+
+
+            <template v-if="curentTabButon == 1">
+              <div class="natal-prognoz__planets-list">
+                <div class="natal-prognoz__planet-element" v-for="(item, index) in planets " :key="index" 
+                :class="{'natal-prognoz__planet-element_activ': currentPlanetSelected == index}"
+                @click="currentPlanetSelected = index">
+                  <img :src="item.img" alt="" class="natal-prognoz__planet-element-img">
+                  <p class="natal-prognoz__planet-element-title">{{item.name}}</p>
+                  <p class="natal-prognoz__planet-element-subtitle">{{item.subname}}</p>
+                </div>
+              </div>
+
+              <div class="natal-prognoz__value-container">
+                <div class="natal-prognoz__value-container-header">
+                  <div class="natal-prognoz__value-container-icon">
+                    <img :src="planets[currentPlanetSelected].img" alt="" class="natal-prognoz__value-container-planet-icon">
+                    <img src="https://yoomap.ru/images/zodiac/%D1%81%D0%BA%D0%BE%D1%80%D0%BF%D0%B8%D0%BE%D0%BD%D0%B5.png" alt="" class="natal-prognoz__value-container-zodiac-icon">
+                  </div>
+                  <div class="natal-prognoz__value-container-header-text">
+                    <p class="natal-prognoz__value-container-header-title">{{ getZodiac(planets[currentPlanetSelected].lon, planets[currentPlanetSelected].name)}}</p>
+                    <p class="natal-prognoz__value-container-header-subtitle">{{planets[currentPlanetSelected].subname}}</p>
+                  </div>
+                </div>
+
+
+             
+
+                <div class="natal-prognoz__value-container-body ">
+                  <div class="wp-redactor" v-html="getCurrentZodiacData(planets[currentPlanetSelected].name, getZodiacV2(planets[currentPlanetSelected].lon, planets[currentPlanetSelected].name))">
+                  </div>
+                 
+                </div>
+              </div>
+            </template>
+            
+          </div>
+         
+
+
+        </div>
+      </section>
+
+
       
         <section class="account-main__front">
             <div class="container">
@@ -235,9 +482,7 @@
 
           
 
-                <NuxtLink to="/account/user-settings">
-                  настройки пользывателя                                                        
-                </NuxtLink>
+                
 
 
 
@@ -336,7 +581,7 @@ definePageMeta({
 
 // import { isTokenValid, getTokenExpirationTime } from '@/plugins/tokenDecoderTimeStatus.js';
 // import { Astronomy, Observer } from 'astronomy-engine';
-import { SearchMoonQuarter, Equator, Observer, Vector, Ecliptic  } from 'astronomy-engine';
+import {SiderealTime,  SearchMoonQuarter, Equator, Observer, Vector, Ecliptic  } from 'astronomy-engine';
 import { useCounterStore } from '@/stores/counter'
 import moment from "moment-timezone";
 import VueDatePicker from '@vuepic/vue-datepicker';
@@ -356,6 +601,7 @@ export default {
             titlePost: '',
             descriptionPost: '',
             userNatalChartList: [],
+            userNatalChartListActivIndex: 0,
 
             dateBorn: null,
             dateBornErrorText: null,
@@ -399,11 +645,21 @@ export default {
             width: 500,
             height: 500,
             viewBox: "0 0 500 500",
-            zodiacSigns: ["Овен", "Телец", "Близнецы", "Рак", "Лев", "Дева", "Весы", "Скорпион", "Стрелец", "Козерог", "Водолей", "Рыбы"],
+            zodiacSigns: ["овен", "телец", "близнецы", "рак", "lev", "дева", "весы", "скорпион", "стрелец", "козерог", "водолей", "рыби"],
             planets: [],  // Сюда будем добавлять данные о планетах
             aspects: [], // Populated dynamically
             
             loadStatus:false,
+
+            WP_STRING_CURENT_LOCATION: null,
+            WP_STRING_CURENT_DATE_TIME: null,
+
+            userNatalChartsTableListStatusView: false,
+
+            curentTabButon: 1,
+            currentPlanetSelected: 0,
+
+            serverDataPrognozPlanetInZodiac: []
             
         }
     },
@@ -417,6 +673,27 @@ export default {
     },
 
     methods: {
+      loadCurrentNatalChartSelected(index,item){
+        this.userNatalChartListActivIndex = index
+        this.WP_STRING_CURENT_LOCATION = item.acf.kordinaty
+        this.WP_STRING_CURENT_DATE_TIME = item.acf.data_i_vremya
+
+        this.calculateEquatorialCoordinates(this.WP_STRING_CURENT_LOCATION, this.WP_STRING_CURENT_DATE_TIME)
+      },
+
+  
+
+
+      //convert date and time
+      formatDateTime(dateTime) {
+        if (!dateTime) return ''; // Проверяем на пустое значение
+        const date = new Date(dateTime); // Преобразуем строку в объект Date
+        const formattedDate = date.toISOString().split('T')[0]; // Получаем дату в формате YYYY-MM-DD
+        const hours = date.getHours(); // Часы
+        const minutes = date.getMinutes().toString().padStart(2, '0'); // Минуты с ведущим нулём
+        return `${formattedDate} ${hours}:${minutes}`; // Возвращаем итоговую строку
+      },
+
 
         validateInput(event) {
           const value = event.target.value;
@@ -581,7 +858,7 @@ export default {
         }
         else{
           curentLocation.lat = this.latitudeLocation
-          this.curentLocation.lng = this.longitudeLocation
+          curentLocation.lng = this.longitudeLocation
         }
 
         console.log(currentDate, currentTime)
@@ -593,7 +870,13 @@ export default {
         console.log('current coords',curentLocation)
         console.log('current grinvich time', dateAndTimeUTCConvert)
 
+
+        this.WP_STRING_CURENT_LOCATION = curentLocation
+        this.WP_STRING_CURENT_DATE_TIME = dateAndTimeUTCConvert
+
         this.calculateEquatorialCoordinates(curentLocation, dateAndTimeUTCConvert)
+
+        
 
       },
 
@@ -642,20 +925,20 @@ export default {
       const plutoEcliptic = this.calcEcliptic(equatorialPluto);
 
       this.planets = [
-        { name: "Солнце", lon: sunEcliptic.elon, color: "yellow" },
-        { name: "Луна", lon: moonEcliptic.elon, color: "silver" },
-        { name: "Меркурий", lon: mercuryEcliptic.elon, color: "gray" },
-        { name: "Венера", lon: venusEcliptic.elon, color: "yellow" },
-        { name: "Марс", lon: marsEcliptic.elon, color: "red" },
-        { name: "Юпитер", lon: jupiterEcliptic.elon, color: "orange" },
-        { name: "Сатурн", lon: saturnEcliptic.elon, color: "gold" },
-        { name: "Уран", lon: uranusEcliptic.elon, color: "lightblue" },
-        { name: "Нептун", lon: neptuneEcliptic.elon, color: "blue" },
-        { name: "Плутон", lon: plutoEcliptic.elon, color: "brown" },
+        { name: "Солнце",subname:"Характер", lon: sunEcliptic.elon, color: "#FDB53A", img: 'https://yoomap.ru/images/planets/mini/%D0%A1%D0%BE%D0%BB%D0%BD%D1%86%D0%B5.png' },
+        { name: "Луна",subname:"Эмоции", lon: moonEcliptic.elon, color: "#D0D0D0", img: 'https://yoomap.ru/images/planets/mini/%D0%9B%D1%83%D0%BD%D0%B0.png' },
+        { name: "Меркурий",subname:"Общение", lon: mercuryEcliptic.elon, color: "#F19440", img: 'https://yoomap.ru/images/planets/mini/%D0%9C%D0%B5%D1%80%D0%BA%D1%83%D1%80%D0%B8%D0%B9.png' },
+        { name: "Венера",subname:"Любовь", lon: venusEcliptic.elon, color: "#E1A853", img: 'https://yoomap.ru/images/planets/mini/%D0%92%D0%B5%D0%BD%D0%B5%D1%80%D0%B0.png' },
+        { name: "Марс",subname:"Энергия", lon: marsEcliptic.elon, color: "#F9795C", img: 'https://yoomap.ru/images/planets/mini/%D0%9C%D0%B0%D1%80%D1%81.png' },
+        { name: "Юпитер",subname:"Стабильность", lon: jupiterEcliptic.elon, color: "#D78766", img: 'https://yoomap.ru/images/planets/mini/%D0%AE%D0%BF%D0%B8%D1%82%D0%B5%D1%80.png' },
+        { name: "Сатурн",subname:"Общество", lon: saturnEcliptic.elon, color: "#F9D5A6", img: 'https://yoomap.ru/images/planets/mini/%D0%A1%D0%B0%D1%82%D1%83%D1%80%D0%BD.png' },
+        { name: "Уран",subname:"Перемены", lon: uranusEcliptic.elon, color: "#38CEBF", img: 'https://yoomap.ru/images/planets/mini/%D0%A3%D1%80%D0%B0%D0%BD.png' },
+        { name: "Нептун",subname:"Мечты", lon: neptuneEcliptic.elon, color: "#6F6AC3", img: 'https://yoomap.ru/images/planets/mini/%D0%9D%D0%B5%D0%BF%D1%82%D1%83%D0%BD.png' },
+        { name: "Плутон",subname:"Поколение", lon: plutoEcliptic.elon, color: "brown", img: 'https://yoomap.ru/images/planets/mini/%D0%9F%D0%BB%D1%83%D1%82%D0%BE%D0%BD.png' },
       ];
 
       this.calculateAspects(); // Расчет аспектов после получения данных планет
-      this.loadStatus = true;
+      
     },
 
 
@@ -666,50 +949,74 @@ export default {
         },
 
         getZodiac(elon, planetName) {
-        const signs = ["Овен", "Телец", "Близнецы", "Рак", "Лев", "Дева", "Весы", "Скорпион", "Стрелец", "Козерог", "Водолей", "Рыбы"];
+        const signs = ["Овне", "Тельце", "Близнецах", "Раке", "Льве", "Деве", "Весах", "Скорпионе", "Стрелеце", "Козероге", "Водолее", "Рыбах"];
         const zodiacSign = signs[Math.floor(+elon / 30)];
         console.log(`Planet is in ${zodiacSign}`);
         return `${planetName} в ${zodiacSign}`;
         },
 
 
+        getZodiacV1(elon, planetName) {
+        const signs = ["Овен", "Телец", "Близнецы", "Рак", "Лев", "Дева", "Весы", "Скорпион", "Стрелец", "Козерог", "Водолей", "Рыбы"];
+        const zodiacSign = signs[Math.floor(+elon / 30)];
+        console.log(`Planet is in ${zodiacSign}`);
+        return `${zodiacSign}`;
+        },
+
+        getZodiacV2(elon, planetName) {
+        const signs = ["oven", "telecz", "blizneczy", "rak", "lev", "deva", "vesy", "skorpion", "strelecz", "kozerog", "vodolej", "ryby"];
+        const zodiacSign = signs[Math.floor(+elon / 30)];
+        console.log(`Planet is in ${zodiacSign}`);
+        return `${zodiacSign}`;
+        },
+
+        //calculate aspects
         calculateAspects() {
-  const aspects = [];
-  const aspectTypes = [
-    { name: "Соединение", angle: 0, orb: 8 },
-    { name: "Оппозиция", angle: 180, orb: 8 },
-    { name: "Трин", angle: 120, orb: 6 },
-    { name: "Квадрат", angle: 90, orb: 6 },
-    { name: "Секстиль", angle: 60, orb: 6 },
-    { name: "Квинтиль", angle: 72, orb: 2.5 }
-  ];
+        const aspects = [];
+        const aspectTypes = [
+          { name: "Соединение", angle: 0, orb: 8 },
+          { name: "Оппозиция", angle: 180, orb: 8 },
+          { name: "Трин", angle: 120, orb: 6 },
+          { name: "Квадрат", angle: 90, orb: 6 },
+          { name: "Секстиль", angle: 60, orb: 6 },
+          { name: "Квинтиль", angle: 72, orb: 2.5 }
+        ];
 
-  for (let i = 0; i < this.planets.length; i++) {
-    for (let j = i + 1; j < this.planets.length; j++) {
-      const planet1 = this.planets[i];
-      const planet2 = this.planets[j];
-      let diff = Math.abs(planet1.lon - planet2.lon) % 360;
+        for (let i = 0; i < this.planets.length; i++) {
+          for (let j = i + 1; j < this.planets.length; j++) {
+            const planet1 = this.planets[i];
+            const planet2 = this.planets[j];
+            let diff = Math.abs(planet1.lon - planet2.lon) % 360;
 
-      // Корректируем, чтобы угол не превышал 180°
-      if (diff > 180) {
-        diff = 360 - diff;
-      }
+            // Корректируем, чтобы угол не превышал 180°
+            if (diff > 180) {
+              diff = 360 - diff;
+            }
 
-      aspectTypes.forEach(aspect => {
-        if (Math.abs(diff - aspect.angle) <= aspect.orb) {
-          aspects.push({
-            planet1,
-            planet2,
-            type: aspect.name,
-            angleDifference: diff // Добавляем угловое различие
-          });
+            aspectTypes.forEach(aspect => {
+              if (Math.abs(diff - aspect.angle) <= aspect.orb) {
+                aspects.push({
+                  planet1,
+                  planet2,
+                  type: aspect.name,
+                  angleDifference: diff // Добавляем угловое различие
+                });
+              }
+            });
+          }
         }
-      });
-    }
-  }
 
-  this.aspects = aspects;
-},
+        this.aspects = aspects;
+
+
+        this.loadStatus = true;
+        this.calculateAscendant()
+
+        if(this.loadStatus == true && this.userNatalChartsTableListStatusView == false){
+          this.createNatalChartServerRequest()
+        }
+
+      },
 
 
     getAspectColor(type) {
@@ -726,13 +1033,21 @@ export default {
 
 
         getX(index) {
-        const angle = (index * 30 + 15) * (Math.PI / 180);  // 30 градусов на знак
-        return 250 + 200 * Math.cos(angle);  // 250 - центр, 200 - радиус
+        // Получаем угол для текущего знака
+        const angle = (index * 30) * (Math.PI / 180); // каждый знак по 30 градусов
+        const radius = 200; // Радиус кольца
+        const offset = 30; // Дополнительное смещение для размещения за пределами кольца
+
+        return 250 + (radius + offset) * Math.cos(angle);
         },
 
         getY(index) {
-        const angle = (index * 30 + 15) * (Math.PI / 180);
-        return 250 + 200 * Math.sin(angle);
+          // Получаем угол для текущего знака
+        const angle = (index * 30) * (Math.PI / 180); // каждый знак по 30 градусов
+        const radius = 200; // Радиус кольца
+        const offset = 30; // Дополнительное смещение для размещения за пределами кольца
+
+        return 250 + (radius + offset) * Math.sin(angle);
         },
 
         getTextOffset(index) {
@@ -751,15 +1066,75 @@ export default {
 
 
 
+       // Функция для расчета асцендента
+       // Функция для расчета асцендента
+          calculateAscendant() {
+      // Ваши переменные
+      const dateTime = this.WP_STRING_CURENT_DATE_TIME;
+      const latitude = this.WP_STRING_CURENT_LOCATION.lat;
+      const longitude = this.WP_STRING_CURENT_LOCATION.lng;
+
+      // Проверка на наличие данных
+      if (!dateTime || latitude === undefined || longitude === undefined) {
+        console.error("Пожалуйста, укажите дату, широту и долготу.");
+        return;
+      }
+
+      // Преобразуем строку даты в объект Date
+      const date = new Date(dateTime);
+
+      // 1. Получаем Гринвичское звездное время (GST)
+      const gst = SiderealTime(date);
+
+      // 2. Рассчитываем местное звездное время (LST)
+      const lst = (gst + longitude / 15) % 24;
+
+      console.log('star time',this.convertToStandardTime(lst))
+
+      // 3. Получаем экваториальные координаты для Солнца (или другого объекта)
+      let observer = new Observer(+latitude, +longitude, 0);
+      const sunCoordinates = Equator("Sun", date, observer, true, true);
+
+      console.log(observer,sunCoordinates)
+
+      const ra = sunCoordinates.ra; // Прямое восхождение в часах
+      const ascendant = (lst - ra) % 24; // Рассчитываем асцидент на основе LST и RA
+
+      // Переводим асцидент в градусы
+      let ascendantCurrent = (ascendant * 15 + 360) % 360; // Преобразуем асцидент в градусы, всегда положительное значение
+      console.log(ascendant, ascendantCurrent)
+
+      // 5. Рассчитываем знак асцидента
+    
+      let ascendantSign = this.getZodiacSign(ascendantCurrent); // Получаем знак асцидента по долготе асцидента
+
+      console.log(ascendant, ascendantSign)
+
+
+      
 
 
 
+    },
+
+    // Функция для определения знака зодиака по долготе
+    getZodiacSign(longitude) {
+      const signs = [
+        "Овен", "Телец", "Близнецы", "Рак", "Лев", "Дева",
+        "Весы", "Скорпион", "Стрелец", "Козерог", "Водолей", "Рыбы"
+      ];
+      const index = Math.floor(longitude / 30); // Каждый знак зодиака охватывает 30°
+      return signs[index];
+    },
 
 
+     convertToStandardTime(starTime) {
+  const hours = Math.floor(starTime); // Часы
+  const minutes = Math.floor((starTime - hours) * 60); // Минуты
+  const seconds = Math.round(((starTime - hours) * 60 - minutes) * 60); // Секунды
 
-
-
-
+  return `${ hours}:${minutes}:${seconds}`;
+},
 
 
 
@@ -784,13 +1159,6 @@ export default {
         },
 
 
-
-
-
-
-   
-
-
         //get user data
         getUserDataServerQuery(){
             const url = this.store.urlQuery + '/wp-json/wp/v2/users/me'
@@ -810,8 +1178,8 @@ export default {
                 console.log('Успешный ответ:', result);
 
                 this.userData = result
-
-                this.getNatalChartListServerQuery()
+                this.getPrognozDataList()
+                
 
             })
             .catch(error => {
@@ -827,15 +1195,20 @@ export default {
         createNatalChartServerRequest(){
             const url = this.store.urlQuery + '/wp-json/wp/v2/user-natal-chart'
             let authToken = localStorage.getItem('jwtToken')
-
+       
             let natalChartDataCreate = {
-                "title": this.titlePost,
-                "content": this.descriptionPost,
+                "title": JSON.stringify(this.WP_STRING_CURENT_DATE_TIME) ,
+                "content": 'test',
                 "status": "publish",
                 "author": +this.userData.id,
+                "acf": {
+                    "data_i_vremya": this.WP_STRING_CURENT_DATE_TIME ,
+                    "kordinaty": this.WP_STRING_CURENT_LOCATION,
+                }
             }
 
-            console.log(natalChartDataCreate)
+            console.log('Server Data befor create natal chart',natalChartDataCreate)
+            console.log('Server Data befor create natal chart',this.WP_STRING_CURENT_DATE_TIME, this.WP_STRING_CURENT_LOCATION)
 
             fetch(url, {
             method: 'POST',
@@ -849,8 +1222,7 @@ export default {
             .then(response => response.json())
             .then(result => {
                 console.log('Успешный ответ:', result);
-                alert('прогноз готов')
-
+              
                 this.titlePost = null
                 this.descriptionPost = null
                 
@@ -862,6 +1234,37 @@ export default {
                 console.error('Ошибка:', error);
                 // Обработка ошибки
                 alert('чтото пошло не так')
+            });
+        },
+
+
+        //delete natal chart
+        deleteNatalChartServerRequest(postId) {
+            const url = `${this.store.urlQuery}/wp-json/wp/v2/user-natal-chart/${postId}`;
+            const authToken = localStorage.getItem('jwtToken');  // JWT токен для аутентификации
+
+            fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${authToken}`,  // Передаем авторизационный токен
+                    'Accept': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Успешно удалено:', result);
+
+
+                if(this.userNatalChartList.length <= 1){
+                  this.loadStatus = false
+                }
+              
+                this.getNatalChartListServerQuery();
+               
+            })
+            .catch(error => {
+                console.error('Ошибка удаления:', error);
+                alert('Ошибка при удалении поста');
             });
         },
         
@@ -884,8 +1287,19 @@ export default {
             .then(result => {
                 console.log('Успешный ответ:', result);
                 this.userNatalChartList = result
-
                 
+
+                if(this.userNatalChartList && this.userNatalChartList.length > 0){
+                  this.userNatalChartsTableListStatusView = true
+
+                  this.WP_STRING_CURENT_LOCATION = this.userNatalChartList[0].acf.kordinaty
+                  this.WP_STRING_CURENT_DATE_TIME = this.userNatalChartList[0].acf.data_i_vremya
+                  this.userNatalChartListActivIndex = 0
+                  this.calculateEquatorialCoordinates(this.WP_STRING_CURENT_LOCATION, this.WP_STRING_CURENT_DATE_TIME)
+                }
+                else{
+                  this.userNatalChartsTableListStatusView = false
+                }
 
             })
             .catch(error => {
@@ -899,7 +1313,47 @@ export default {
 
 
 
-        //create post
+
+        //get user natal chart list
+        getPrognozDataList(){
+            const url = this.store.urlQuery + '/wp-json/acf/v3/options'
+            // let authToken = localStorage.getItem('jwtToken')
+
+            fetch(url, {
+            method: 'GET',
+            headers: {
+                // 'Authorization': `Bearer ${authToken}`,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Успешный ответ прогноз:', result);
+
+                this.serverDataPrognozPlanetInZodiac = result.traktovka_planet_v_znakah
+                this.getNatalChartListServerQuery()
+
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            
+    
+                // Обработка ошибки
+            });
+        },
+
+
+        
+
+        getCurrentZodiacData(planetName, currentZodiac){
+
+          const targetPlanet = this.serverDataPrognozPlanetInZodiac.find(planet => planet.nazvanie_planety == planetName);
+
+          return targetPlanet.znaki_zodiaka[currentZodiac].traktovka
+        },
+
     },
 
     computed: {
@@ -912,11 +1366,7 @@ export default {
 
     mounted(){
         this.store = useCounterStore()
-
-        this.statusAuthChech()
-
-        
-        
+        this.statusAuthChech()  
     },
 
 }

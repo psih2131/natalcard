@@ -31,6 +31,26 @@
         <button class="button-popup" @click="autorisationServerRequest">Авторизация</button>
       </div>
 
+      <div class="button-popup-wrapper-yandex">
+        <button class="yandex-id-btn" @click="YandexIdAutorisation()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="24" height="24" rx="12" fill="#FC3F1D"/>
+                <path d="M15.5464 18.0546H13.431V7.58375H12.4863C10.7567 7.58375 9.85201 8.44855 9.85201 9.73911C9.85201 11.2026 10.4773 11.8812 11.7679 12.746L12.8323 13.4644L9.77218 18.0546H7.49707L10.2511 13.9567C8.66789 12.8258 7.77647 11.7215 7.77647 9.85885C7.77647 7.53053 9.39964 5.94727 12.473 5.94727H15.5331V18.0546H15.5464Z" fill="white"/>
+            </svg>
+            Войти с Яндекс ID    
+        </button>
+
+        <div id="container"></div>
+        <div v-if="tokenData" class="token-data">
+        <p>Сообщение с токеном:</p>
+        <pre>{{ tokenData }}</pre>
+        </div>
+        <div v-if="error" class="error">
+        <p>Что-то пошло не так:</p>
+        <pre>{{ error }}</pre>
+        </div>
+      </div>
+
 
       <p class="popup-registration__error" v-if="errorText">{{errorText}}</p>
 
@@ -137,6 +157,45 @@ methods: {
     },
 
 
+
+    YandexIdAutorisation(){
+
+    },
+
+    initializeYandexSuggest() {
+      if (window.YaAuthSuggest) {
+        window.YaAuthSuggest
+          .init(
+            {
+              client_id: '981e67812f0a4543bf818fde759d3069',
+              response_type: 'token',
+              redirect_uri: 'http://localhost:3000/',
+            },
+            'http://localhost:3000',
+            {
+              view: 'button',
+              parentId: 'container',
+              buttonView: 'main',
+              buttonTheme: 'light',
+              buttonSize: 'm',
+              buttonBorderRadius: 0,
+            }
+          )
+          .then((result) => result.handler())
+          .then((data) => {
+            console.log('Сообщение с токеном: ', data);
+            this.tokenData = JSON.stringify(data, null, 2);
+          })
+          .catch((error) => {
+            console.log('Что-то пошло не так: ', error);
+            this.error = JSON.stringify(error, null, 2);
+          });
+      } else {
+        this.error = 'YaAuthSuggest не доступен.';
+      }
+    },
+
+
 },
 
 computed: {
@@ -149,7 +208,35 @@ watch: {
 
 mounted(){
     this.store = useCounterStore()
+
+
+     // Динамическая загрузка скрипта Яндекса
+     const script = document.createElement('script');
+        script.src = 'https://yastatic.net/s3/passport-sdk/autofill/v1/sdk-suggest-with-polyfills-latest.js';
+        script.onload = this.initializeYandexSuggest;
+        script.onerror = () => {
+        this.error = 'Не удалось загрузить SDK Яндекса.';
+        };
+        document.head.appendChild(script);
 },
 
 }
 </script>
+
+
+
+<style>
+.token-data,
+.error {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.token-data p,
+.error p {
+  font-weight: bold;
+}
+</style>

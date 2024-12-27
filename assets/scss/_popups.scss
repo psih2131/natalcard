@@ -133,3 +133,25 @@
         transition: all ease 0.3s;
     }
 }
+
+.button-popup-wrapper-yandex {
+    margin-top: 20px;
+}
+
+.yandex-id-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
+    background: #000;
+    font-size: 14px;
+    color: #fff;
+    border: none;
+
+    svg {
+        display: block;
+        margin-right: 14px;
+    }
+}

@@ -80,6 +80,7 @@
     margin-bottom: 180px;
 
     .container {
+        flex-wrap: wrap;
         border-radius: 20px;
         border: 1px solid rgba(255, 255, 255, 0.05);
         padding: 40px 55px;
@@ -374,4 +375,419 @@
     font-size: 26px;
     font-weight: 500;
     margin-bottom: 30px;
+}
+
+.natal-chart-sec {
+    .container {
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 40px 55px;
+        background: #18181A;
+        border-radius: 20px;
+    }
+}
+
+.natal-chart-sec__main-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+}
+
+.natal-chart-sec__main-info {
+    width: 50%;
+}
+
+.natal-chart-sec__natal-chart-svg {
+    width: 50%;
+}
+
+.natal-chart-sec {
+    margin-bottom: 300px;
+}
+
+.natal-chart-sec__title {
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.planet-position-table__row {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    background: #303031;
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+.planet-position-table__col-dome {
+    width: 50px;
+    text-align: center;
+}
+
+.planet-position-table__col-dom-text {
+    text-align: center;
+}
+
+.planet-position-table__col-position {
+    width: 200px;
+}
+
+.planet-position-table__col-planets {
+    width: 150px;
+}
+
+.planet-position-table__header-row {
+    background: none;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    font-size: 14px;
+
+}
+
+.planet-position-table__col-planets {
+    display: flex;
+    align-items: center;
+}
+
+.planet-position-table__col-planets-img {
+    width: 25px;
+    display: block;
+}
+
+.planet-position-table__col-planets-name {
+    width: calc(100% - 25px);
+    padding-left: 15px;
+}
+
+.planet-position-table__col-position-text {
+    font-size: 14px;
+}
+
+.planet-position-table__col-planets-name {
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.natal-chart-sec__natal-chart-svg {
+    width: 520px;
+    height: 520px;
+    background: #fff;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.planet-text {
+    display: none;
+}
+
+.planet-circle {
+    cursor: pointer;
+}
+
+.planet-circle:hover+.planet-text {
+    display: inline-block;
+
+}
+
+.aspect-text {
+    display: none;
+}
+
+.aspect-line {
+    cursor: pointer;
+}
+
+.aspect-line:hover+.aspect-text {
+    display: inline-block;
+}
+
+.account-natal-data-sec__prognoz-container {
+    margin-top: 50px;
+    width: 100%;
+}
+
+.natal-prognoz__nav {
+    display: flex;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(65, 65, 65, 0.6);
+    border-radius: 20px;
+    width: 80%;
+    margin: 0 auto;
+
+}
+
+.natal-prognoz__nav-element {
+    width: 50%;
+    text-align: center;
+    font-size: 20px;
+    padding: 15px 0;
+    font-weight: 500;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all ease 0.3s;
+}
+
+.natal-prognoz__nav-element_activ {
+    background: linear-gradient(180deg, #716CF0 0%, #5853E3 100%);
+    color: #fff;
+}
+
+.natal-chart-list {
+    margin-bottom: 60px;
+}
+
+.natal-chart-list__wrapper {
+    border-radius: 20px;
+    border: 1px solid #242426;
+    padding: 55px;
+    background: #18181A;
+}
+
+.natal-chart-list__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.natal-chart-list__title {
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.natal-chart-list__btn-create {
+    padding: 12px 20px;
+    text-align: center;
+    background: linear-gradient(180deg, #716CF0 0%, #5853E3 100%);
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    font-size: 14px;
+    border-radius: 8px;
+    transition: all 0.5s ease;
+    display: inline-block;
+}
+
+.natal-chart-list__table {
+    margin-top: 50px;
+}
+
+.natal-chart-list__table-element {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    background: #222;
+    border: solid 1px #222;
+    padding: 15px 20px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.natal-chart-list__table-element-row-data {
+    display: flex;
+    align-items: center;
+}
+
+.natal-chart-list__table-element-btn-row {
+    display: flex;
+    align-items: center;
+}
+
+.natal-chart-list__table-element-del-btn {
+    cursor: pointer;
+
+    svg {
+        display: block;
+    }
+}
+
+.natal-chart-list__table-element-select-btn {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    border-radius: 100px;
+    background: #464646;
+    padding: 9px 17px;
+    cursor: pointer;
+    color: #fff;
+    border: none;
+    margin-right: 25px;
+}
+
+.natal-chart-list__table-element-select-btn-activ {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    border-radius: 100px;
+    background: #9AEEC0;
+    padding: 9px 17px;
+
+    color: #161618;
+    border: none;
+    margin-right: 25px;
+}
+
+.dt-col {
+    border-right: solid 1px rgba(255, 255, 255, 0.10);
+    height: 30px;
+    display: flex;
+    align-items: center;
+
+    &:last-child {
+        border: none;
+    }
+}
+
+.natal-chart-list__table-element-text-data {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #8B8B8D;
+
+    span {
+        color: #fff;
+    }
+}
+
+.natal-chart-list__table-element-col-1 {
+    width: 90px;
+}
+
+.natal-chart-list__table-element-col-2 {
+    width: 310px;
+
+    .natal-chart-list__table-element-text-data {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.natal-chart-list__table-element-col-3 {
+    width: 200px;
+
+    .natal-chart-list__table-element-text-data {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.natal-chart-list__table-element-row-data {
+    width: calc(100% - 160px);
+}
+
+.natal-chart-list__table-element-activ {
+    border: 1px solid #716CF0;
+    background: #303031;
+}
+
+.natal-prognoz__planets-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.natal-prognoz__planet-element {
+    cursor: pointer;
+    display: block;
+    width: calc(20% - 15px);
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    text-align: center;
+    background: #222222;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(65, 65, 65, 0.6);
+}
+
+.natal-prognoz__planet-element-img {
+    width: 40px;
+    display: block;
+}
+
+.natal-prognoz__planet-element-title {
+    font-size: 20px;
+    margin-top: 15px;
+    width: 100%;
+    font-weight: 500;
+}
+
+.natal-prognoz__planet-element-subtitle {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.natal-prognoz__value-container {
+    background: #F3E7D9;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.natal-prognoz__value-container-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.natal-prognoz__value-container-icon {
+    display: flex;
+    align-items: center;
+}
+
+.natal-prognoz__value-container-planet-icon {
+    width: 40px;
+    display: block;
+}
+
+.natal-prognoz__value-container-zodiac-icon {
+    width: 40px;
+    display: block;
+    margin-left: 10px;
+}
+
+.natal-prognoz__value-container-header-text {
+    margin-left: 20px;
+}
+
+.natal-prognoz__value-container-header-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #161618;
+    line-height: 1;
+}
+
+.natal-prognoz__value-container-header-subtitle {
+    font-size: 16px;
+    margin-top: 5px;
+    color: #161618;
+}
+
+.natal-prognoz__value-container-body {
+    padding: 10px 20px 20px 20px;
+
+    .wp-redactor {
+        color: #161618;
+    }
+}
+
+.natal-prognoz__planet-element_activ {
+    background: #6F6AC3;
 }

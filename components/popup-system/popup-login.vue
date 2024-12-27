@@ -80,6 +80,7 @@ data() {
         userName: null,
         password: null,
         errorText: null,
+        tokenData: null,
     }
 },
 
@@ -184,7 +185,7 @@ methods: {
           .then((result) => result.handler())
           .then((data) => {
             console.log('Сообщение с токеном: ', data);
-            this.tokenData = JSON.stringify(data, null, 2);
+            this.tokenData = data;
           })
           .catch((error) => {
             console.log('Что-то пошло не так: ', error);
@@ -193,6 +194,36 @@ methods: {
       } else {
         this.error = 'YaAuthSuggest не доступен.';
       }
+    },
+
+
+
+    getYandexData(){
+        const oauthToken = this.tokenData.access_token ; // Замените на свой OAuth токен
+        const jwtSecret = '81e67ad964d0462b9d5c3db552bf10b0'; // Если необходимо, замените на ваш секретный ключ
+        const format = 'json'; // Вы можете заменить на 'xml' или 'jwt' в зависимости от формата ответа
+
+        const url = `https://login.yandex.ru/info?format=${format}&jwt_secret=${jwtSecret}`;
+
+        fetch(url, {
+        method: 'GET',
+        headers: {
+            'Authorization': `OAuth ${oauthToken}`,  // Используйте ваш OAuth токен
+            'Content-Type': 'application/json'       // Указываем тип контента
+        }
+        })
+        .then(response => {
+            if (!response.ok) {
+            throw new Error(`Ошибка: ${response.statusText}`);
+            }
+            return response.json();  // Преобразуем ответ в JSON
+        })
+        .then(data => {
+            console.log('Ответ от API:', data);
+        })
+        .catch(error => {
+            console.error('Ошибка при выполнении запроса:', error);
+        });
     },
 
 

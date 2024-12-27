@@ -186,6 +186,7 @@ methods: {
           .then((data) => {
             console.log('Сообщение с токеном: ', data);
             this.tokenData = data;
+            this.getYandexData()
           })
           .catch((error) => {
             console.log('Что-то пошло не так: ', error);

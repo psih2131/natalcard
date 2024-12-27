@@ -169,9 +169,9 @@ methods: {
             {
               client_id: '981e67812f0a4543bf818fde759d3069',
               response_type: 'token',
-              redirect_uri: 'http://localhost:3000/',
+              redirect_uri: 'https://natalnaya-karta-online.ru/',
             },
-            'http://localhost:3000',
+            'https://natalnaya-karta-online.ru',
             {
               view: 'button',
               parentId: 'container',

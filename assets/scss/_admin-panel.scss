@@ -424,6 +424,8 @@
 .planet-position-table__col-dome {
     width: 50px;
     text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 .planet-position-table__col-dom-text {
@@ -432,10 +434,16 @@
 
 .planet-position-table__col-position {
     width: 200px;
+    display: flex;
+    align-items: center;
 }
 
 .planet-position-table__col-planets {
     width: 150px;
+
+    img {
+        width: 30px;
+    }
 }
 
 .planet-position-table__header-row {

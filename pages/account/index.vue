@@ -471,8 +471,6 @@ import imgNeptun from '@/assets/img/planets/neptun.png';
 import imgPluton from '@/assets/img/planets/pluton.png';
 
 export default {
-
- 
     data() {
         return {
             store: null,

@@ -33,7 +33,7 @@ export default {
     script.onload = () => {
       // Скрипт загружен, теперь можно вызвать функцию
       if (window.YaSendSuggestToken) {
-        window.YaSendSuggestToken("http://localhost:3000", {
+        window.YaSendSuggestToken("https://natalnaya-karta-online.ru", {
           "kek": true
         });
       } else {

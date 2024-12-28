@@ -10,7 +10,7 @@
   background: #161618;
   transition: all 0.5s ease;
   box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.10);
-  padding: 20px;
+  padding: 15px 0;
 }
 
 .header__content {
@@ -20,7 +20,7 @@
 }
 
 .header__logo {
-  width: 170px;
+  width: 210px;
   display: block;
 
   img {
@@ -59,10 +59,12 @@
   margin-left: 30px;
   transition: all 0.5s ease;
   display: block;
+  cursor: pointer;
 }
 
 .header__btns-wrapper {
   display: flex;
+  cursor: pointer;
 }
 
 .header__burger,
@@ -96,6 +98,13 @@
   margin-right: 10px;
 }
 
+.aut-header-btn {
+  cursor: pointer;
+}
+
+
+
+
 
 
 
@@ -117,7 +126,7 @@
     background: transparent;
     border-radius: 6px;
     cursor: pointer;
-    z-index: 9999;
+    z-index: 999;
     margin-left: 25px;
   }
 

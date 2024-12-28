@@ -14,7 +14,7 @@
 .popup {
     position: absolute;
     border-radius: 4px;
-    background: #303031;
+    background: #222;
     padding: 30px;
     box-shadow: 0px 2px 10px 0px rgba(38, 44, 71, 0.16);
 }
@@ -22,12 +22,15 @@
 .popup__close-btn {
     cursor: pointer;
     position: absolute;
-    top: -30px;
-    right: -30px;
+    top: -40px;
+    right: -40px;
     transition: all ease 0.3s;
 
     svg {
         display: block;
+        width: 40px;
+        height: auto;
+
     }
 
     &:hover {
@@ -41,12 +44,23 @@
 }
 
 .popup-registration {
-    width: 340px;
+    width: 380px;
     border-radius: 20px;
-    border: solid 1px #3C3C3D;
+    // border: solid 1px #3C3C3D;
 
     .field-input {
-        margin-bottom: 25px;
+        margin-bottom: 20px;
+
+        .field-input__wrapper {
+            input {
+                padding: 15px;
+                border-radius: 15px;
+            }
+        }
+    }
+
+    .yaPersonalButton_m {
+        height: 48px;
     }
 }
 
@@ -61,18 +75,19 @@
     font-size: 16px;
     margin-top: 10px;
     opacity: 0.7;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .button-popup {
     width: 100%;
     text-align: center;
-    padding: 12px 0;
+    padding: 15px;
+    border-radius: 15px;
     background: linear-gradient(180deg, #716CF0 0%, #5853E3 100%);
     color: #fff;
     font-weight: 500;
     font-size: 14px;
-    border-radius: 8px;
+
     transition: all 0.5s ease;
     display: block;
     border: none;
@@ -84,7 +99,7 @@
 }
 
 .button-popup-wrapper {
-    margin-top: 30px;
+    margin-top: 35px;
 }
 
 .popup-registration__error {
@@ -103,12 +118,12 @@
 
 .personal-data-checbox__text {
     width: calc(100% - 30px);
-    font-size: 12px;
+    font-size: 11px;
     color: rgba(255, 255, 255, 0.5);
 
     a {
         color: #fff;
-        text-decoration: underline;
+
 
     }
 }
@@ -153,4 +168,40 @@
         display: block;
         margin-right: 14px;
     }
+}
+
+
+.popup-user-created {
+    width: 380px;
+    border-radius: 20px;
+    // border: solid 1px #3C3C3D;
+
+
+
+}
+
+.popup-user-created__img-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.popup-user-created__img {
+    width: 200px;
+}
+
+.popup-user-created__title {
+    text-align: center;
+    font-size: 32px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.popup-user-created__subtitle {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+.popup-user-created__btn-row {
+    margin-top: 40px;
 }

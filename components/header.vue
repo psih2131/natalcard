@@ -39,17 +39,17 @@
             </nav>
             <div class="header__btns-wrapper">
               <template v-if="store.autorisationStatus ">
-                <NuxtLink to="/account/" class="header__accoutn header-account">
+                <div class="header__accoutn header-account" @click="openUserNavStatus = true">
                   <p class="header-account__name">Аккаунт</p>
                   <div class="header-account__photo-wrapper">
                    <img src="@/assets/img/account.png" alt="">
                   </div>
-                </NuxtLink>
+                </div>
               </template>
 
               <template v-else>
-                <a href="#" class="login__btn main__btn"  @click="openLogin()">Вход</a>
-                <a href="#" class="reg__btn" @click="openRegistration()">Регистрация</a>
+                <a  class="aut-header-btn login__btn main__btn"  @click="openLogin()">Вход</a>
+                <a  class="aut-header-btn reg__btn" @click="openRegistration()">Регистрация</a>
               </template>
               
 
@@ -90,17 +90,27 @@
             </div>
 
         </div>
+
+        <template v-if="store.autorisationStatus">
+          <component__user_panel v-if="openUserNavStatus == true " @closeUserPanel="openUserNavStatus = false" />
+        </template>
+        
     </header>
+   
 </template>
 
 <script setup>
 import { useCounterStore } from '@/stores/counter'
 import { ref, onMounted, onBeforeUnmount, computed, watch  } from 'vue';
+import component__user_panel from '@/components/user-panel.vue'
+
+
 
 
 //DATA
 const isScrolled = ref(false);
 const isBurgerActive = ref(false);
+const openUserNavStatus = ref(false)
 const store = useCounterStore()
 
 
@@ -157,6 +167,16 @@ onMounted(() => {
   if(tokenStatusStore && tokenStatusStore != ''){
     store.changeAutorisationStatus(true)
   }
+
+
+  // Динамическая загрузка скрипта Яндекса
+  const script = document.createElement('script');
+  script.src = 'https://yastatic.net/s3/passport-sdk/autofill/v1/sdk-suggest-with-polyfills-latest.js';
+  // script.onload = this.initializeYandexSuggest;
+  script.onerror = () => {
+  this.error = 'Не удалось загрузить SDK Яндекса.';
+  };
+  document.head.appendChild(script);
 
   
   

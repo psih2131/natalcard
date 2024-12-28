@@ -47,9 +47,9 @@
                 </div>
 
  
-                <div class="footer__btns-wrapper">
-                  <a href="#" class="footer__login-btn main__btn">Вход</a>
-                  <a href="#" class="footer__reg-btn main__btn">Регистрация</a>
+                <div class="footer__btns-wrapper" v-if="!store.autorisationStatus ">
+                  <a @click="openLogin()" class=" aut-header-btn footer__login-btn main__btn">Вход</a>
+                  <a @click="openRegistration()" class=" aut-header-btn footer__reg-btn main__btn">Регистрация</a>
                 </div>
               </div>
             </div>
@@ -72,7 +72,19 @@
 </template>
 
 <script setup>
+const store = useCounterStore()
 import { ref, onMounted, onBeforeUnmount } from 'vue';
+
+function openRegistration(){
+  store.changePopupStatus(true)
+  store.changePopupName('popup-registration')
+}
+
+function openLogin(){
+  store.changePopupStatus(true)
+  store.changePopupName('popup-login')
+}
+
 
 function scrollToSection(sectionId) {
     const element = document.getElementById(sectionId);

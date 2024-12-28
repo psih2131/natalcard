@@ -6,15 +6,10 @@
           <div class="account-natal-front-sec__info">
             <h1 class="account-natal-front-sec__title">Открой свое Истинное "Я" С помощью Звезд</h1>
             <p class="account-natal-front-sec__subtitle">Натальная карта — это астрологическая карта, созданная на основе даты, времени и места вашего рождения. Она отражает расположение планет в момент вашего появления на свет, что оказывает значительное влияние на вашу личность, цели, карьеру, отношения и многое другое. Каждый человек уникален, и ваша натальная карта — это ключ к пониманию своего внутреннего мира и потенциала</p>
-            <NuxtLink to="/account/user-settings">
-              настройки пользывателя                                                        
-            </NuxtLink>
           </div>
           <div class="account-natal-front-sec__img-wrapper">
             <div class="first__abs"><img src="/assets/img/head_abs.png" alt="abs"></div>
           </div>
-
-          
         </div>
       </section>
 
@@ -287,7 +282,7 @@
                     :y="getY(index) - 10" 
                     width="20" 
                     height="20" 
-                    :href="`/_nuxt/assets/img/zodiac/${sign}.svg`" />
+                    :href="zodiacIcons[sign]" />
                 </g>
                 
                 <g v-for="(aspect, index) in aspects" :key="index">
@@ -412,57 +407,6 @@
         <section class="account-main__front">
             <div class="container">
 
-
-              <div class="natal-chart" v-if="loadStatus">
-                 
-                <svg :width="width" :height="height" :viewBox="viewBox">
-                  <!-- Circle representing the zodiac -->
-                  <circle cx="250" cy="250" r="200" stroke="black" stroke-width="2" fill="transparent"/>
-              
-                  <!-- Drawing the 12 zodiac signs -->
-                  <g v-for="(sign, index) in zodiacSigns" :key="index">
-                    <line 
-                      :x1="250" 
-                      :y1="250" 
-                      :x2="getX(index)" 
-                      :y2="getY(index)" 
-                      stroke="black" 
-                      stroke-width="1"/>
-                    <text 
-                      :x="getX(index)" 
-                      :y="getY(index)" 
-                      text-anchor="middle" 
-                      :dy="getTextOffset(index)">
-                      {{ sign }}
-                    </text>
-                  </g>
-              
-                  <!-- Planets -->
-                  <g v-for="(planet, index) in planets" :key="index">
-                    <circle :cx="getPlanetX(planet.lon)" :cy="getPlanetY(planet.lon)" r="10" :fill="planet.color" />
-                    <text 
-                      :x="getPlanetX(planet.lon)" 
-                      :y="getPlanetY(planet.lon)" 
-                      text-anchor="middle" 
-                      dy="-15">
-                      {{ planet.name }}
-                    </text>
-                  </g>
-              
-                  <!-- Aspects -->
-                  <line
-                    v-for="(aspect, index) in aspects"
-                    :key="index"
-                    :x1="getPlanetX(aspect.planet1.lon)"
-                    :y1="getPlanetY(aspect.planet1.lon)"
-                    :x2="getPlanetX(aspect.planet2.lon)"
-                    :y2="getPlanetY(aspect.planet2.lon)"
-                    :stroke="getAspectColor(aspect.type)"
-                    stroke-width="2"
-                  />
-                </svg>
-          </div>
-
           <p>эфимериды</p>
           <ul v-if="loadStatus">
             <li v-for="item in planets " :key="item">
@@ -478,94 +422,6 @@
             </li>
           </ul>
 
-
-
-          
-
-                
-
-
-
-
-
-                <hr>
-                <br>
-                <h3>Создать прогноз</h3>
-                <br>
-                <input type="text" placeholder="title chart" v-model="titlePost">
-                <br>
-                <textarea name="description chart" id="" v-model="descriptionPost"></textarea>
-                <br>
-                <button @click="createNatalChartServerRequest">Создать прогноз</button>
-
-                <br>
-                <br>
-
-                <hr>
-                <br>
-                <h3>Мои прогнозы</h3>
-                <ul>
-                    <li v-for="item in userNatalChartList" :key="item">
-                        {{ item.id }}<br>
-                        {{ item.title.rendered }}<br>
-                        {{ item.content.rendered }}
-                        <br><br>
-                    </li>
-                </ul>
-
-                <br>
-                <hr>
-
-                <br><br>
-                <br>
-
-                <hr>
-
-                <div class="form-create-natal-chart">
-                    <h2 class="form-create-natal-chart__title">Расчитать натальную карту</h2>
-                    <div class="form-create-natal-chart__form-row">
-                        <div class="form-create-natal-chart__input-wrapper">
-                            <p class="form-create-natal-chart__input-wrapper-title">Дата рождения</p>
-                            <input type="text" v-model="dateBorn">
-                        </div>
-
-                        <div class="form-create-natal-chart__input-wrapper">
-                            <p class="form-create-natal-chart__input-wrapper-title">Время рождения</p>
-                            <input type="text" v-model="timeBorn">
-                        </div>
-                      
-                    </div>
-                    <div class="form-create-natal-chart__form-row">
-                        <div class="form-create-natal-chart__input-wrapper">
-                            <p class="form-create-natal-chart__input-wrapper-title">Место рождения долгота</p>
-                            <input type="text" v-model="dolgota">
-                        </div>
-
-                        <div class="form-create-natal-chart__input-wrapper">
-                            <p class="form-create-natal-chart__input-wrapper-title">Место рождения широта</p>
-                            <input type="text" v-model="shirota">
-                        </div>
-                    </div>
-
-                    <!-- <button @click="getEphimerids()">расчитать натальную карту</button> -->
-                </div>
-
-
-                <button @click="calculateEquatorialCoordinates()">adasdasasd</button>
-
-
-
-
-
-               
-
-
-
-                <br>
-                <br>
-                <button @click="logout()">выйти из аккаунта</button>
-                
-                <br><br><br><br><br>
             </div>
         </section>
 
@@ -587,6 +443,32 @@ import moment from "moment-timezone";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
 
+
+//zodiac img
+import oven from '@/assets/img/zodiac/овен.svg';
+import telec from '@/assets/img/zodiac/телец.svg';
+import bliznec from '@/assets/img/zodiac/близнецы.svg';
+import rak from '@/assets/img/zodiac/рак.svg';
+import lev from '@/assets/img/zodiac/lev.svg';
+import deva from '@/assets/img/zodiac/дева.svg';
+import vesy from '@/assets/img/zodiac/весы.svg';
+import scorpion from '@/assets/img/zodiac/скорпион.svg';
+import strelec from '@/assets/img/zodiac/стрелец.svg';
+import kozerog from '@/assets/img/zodiac/козерог.svg';
+import vodoley from '@/assets/img/zodiac/водолей.svg';
+import ryby from '@/assets/img/zodiac/рыби.svg';
+
+//planets img
+import imgSun from '@/assets/img/planets/sun.png';
+import imgMoon from '@/assets/img/planets/moon.png';
+import imgMercury from '@/assets/img/planets/mercury.png';
+import imgVenera from '@/assets/img/planets/venera.png';
+import imgMars from '@/assets/img/planets/mars.png';
+import imgJupiter from '@/assets/img/planets/jupiter.png';
+import imgSaturn from '@/assets/img/planets/saturn.png';
+import imgUranus from '@/assets/img/planets/uranus.png';
+import imgNeptun from '@/assets/img/planets/neptun.png';
+import imgPluton from '@/assets/img/planets/pluton.png';
 
 export default {
 
@@ -659,7 +541,23 @@ export default {
             curentTabButon: 1,
             currentPlanetSelected: 0,
 
-            serverDataPrognozPlanetInZodiac: []
+            serverDataPrognozPlanetInZodiac: [],
+            zodiacIcons: {
+              овен: oven,
+              телец: telec,
+              близнецы: bliznec,
+              рак: rak,
+              lev: lev,
+              дева: deva,
+              весы: vesy,
+              скорпион: scorpion,
+              стрелец: strelec,
+              козерог: kozerog,
+              водолей: vodoley,
+              рыби: ryby,
+            }
+
+      
             
         }
     },
@@ -925,20 +823,21 @@ export default {
       const plutoEcliptic = this.calcEcliptic(equatorialPluto);
 
       this.planets = [
-        { name: "Солнце",subname:"Характер", lon: sunEcliptic.elon, color: "#FDB53A", img: 'https://yoomap.ru/images/planets/mini/%D0%A1%D0%BE%D0%BB%D0%BD%D1%86%D0%B5.png' },
-        { name: "Луна",subname:"Эмоции", lon: moonEcliptic.elon, color: "#D0D0D0", img: 'https://yoomap.ru/images/planets/mini/%D0%9B%D1%83%D0%BD%D0%B0.png' },
-        { name: "Меркурий",subname:"Общение", lon: mercuryEcliptic.elon, color: "#F19440", img: 'https://yoomap.ru/images/planets/mini/%D0%9C%D0%B5%D1%80%D0%BA%D1%83%D1%80%D0%B8%D0%B9.png' },
-        { name: "Венера",subname:"Любовь", lon: venusEcliptic.elon, color: "#E1A853", img: 'https://yoomap.ru/images/planets/mini/%D0%92%D0%B5%D0%BD%D0%B5%D1%80%D0%B0.png' },
-        { name: "Марс",subname:"Энергия", lon: marsEcliptic.elon, color: "#F9795C", img: 'https://yoomap.ru/images/planets/mini/%D0%9C%D0%B0%D1%80%D1%81.png' },
-        { name: "Юпитер",subname:"Стабильность", lon: jupiterEcliptic.elon, color: "#D78766", img: 'https://yoomap.ru/images/planets/mini/%D0%AE%D0%BF%D0%B8%D1%82%D0%B5%D1%80.png' },
-        { name: "Сатурн",subname:"Общество", lon: saturnEcliptic.elon, color: "#F9D5A6", img: 'https://yoomap.ru/images/planets/mini/%D0%A1%D0%B0%D1%82%D1%83%D1%80%D0%BD.png' },
-        { name: "Уран",subname:"Перемены", lon: uranusEcliptic.elon, color: "#38CEBF", img: 'https://yoomap.ru/images/planets/mini/%D0%A3%D1%80%D0%B0%D0%BD.png' },
-        { name: "Нептун",subname:"Мечты", lon: neptuneEcliptic.elon, color: "#6F6AC3", img: 'https://yoomap.ru/images/planets/mini/%D0%9D%D0%B5%D0%BF%D1%82%D1%83%D0%BD.png' },
-        { name: "Плутон",subname:"Поколение", lon: plutoEcliptic.elon, color: "brown", img: 'https://yoomap.ru/images/planets/mini/%D0%9F%D0%BB%D1%83%D1%82%D0%BE%D0%BD.png' },
+        { name: "Солнце",subname:"Характер", lon: sunEcliptic.elon, color: "#FDB53A", img: imgSun },
+        { name: "Луна",subname:"Эмоции", lon: moonEcliptic.elon, color: "#D0D0D0", img: imgMoon },
+        { name: "Меркурий",subname:"Общение", lon: mercuryEcliptic.elon, color: "#F19440", img: imgMercury },
+        { name: "Венера",subname:"Любовь", lon: venusEcliptic.elon, color: "#E1A853", img: imgVenera },
+        { name: "Марс",subname:"Энергия", lon: marsEcliptic.elon, color: "#F9795C", img: imgMars },
+        { name: "Юпитер",subname:"Стабильность", lon: jupiterEcliptic.elon, color: "#D78766", img: imgJupiter },
+        { name: "Сатурн",subname:"Общество", lon: saturnEcliptic.elon, color: "#F9D5A6", img: imgSaturn },
+        { name: "Уран",subname:"Перемены", lon: uranusEcliptic.elon, color: "#38CEBF", img: imgUranus },
+        { name: "Нептун",subname:"Мечты", lon: neptuneEcliptic.elon, color: "#6F6AC3", img: imgNeptun },
+        { name: "Плутон",subname:"Поколение", lon: plutoEcliptic.elon, color: "brown", img: imgPluton },
       ];
 
       this.calculateAspects(); // Расчет аспектов после получения данных планет
-      
+
+     
     },
 
 
@@ -1271,9 +1170,10 @@ export default {
 
         //get user natal chart list
         getNatalChartListServerQuery(){
+   
             const url = this.store.urlQuery + '/wp-json/wp/v2/user-natal-chart?author='+this.userData.id
             let authToken = localStorage.getItem('jwtToken')
-
+            console.log('current url user natal charts', url)
             fetch(url, {
             method: 'GET',
             headers: {

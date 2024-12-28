@@ -181,8 +181,8 @@
 }
 
 .test .swiper-button-next {
-  left: 39%!important;
-  bottom: -130px!important;
+  left: 39% !important;
+  bottom: -130px !important;
 }
 
 .swiper-button-next,
@@ -484,7 +484,7 @@
   width: 1000px;
   left: -4% !important;
   position: absolute;
-  bottom: 6px!important;
+  bottom: 6px !important;
 }
 
 .test .swiper {
@@ -880,9 +880,36 @@
   }
 }
 
+.form-wrapper-activ__img-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
+.form-wrapper-activ__img {
+  width: 350px;
+  display: block;
+}
 
+.form-wrapper-activ__title {
+  text-align: center;
+  font-size: 24px;
+  margin-top: 30px;
+  font-weight: 500;
+}
 
+.form-wrapper-activ__btn-wrapper {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-secform {
+  width: calc(50% - 10px);
+  padding: 15px 0;
+  text-align: center;
+  cursor: pointer;
+}
 
 
 
@@ -1116,13 +1143,13 @@
   }
 
   .test .swiper-button-next {
-    left: auto!important;
-    right: 0!important;
-    bottom: 0!important;
+    left: auto !important;
+    right: 0 !important;
+    bottom: 0 !important;
   }
 
   .review__slider-wrapper .work__slider-pagination {
-    bottom: 23px!important;
+    bottom: 23px !important;
   }
 
   .question__wrapper {
@@ -1166,7 +1193,7 @@
   }
 
   .review {
-    padding: 70px  0;
+    padding: 70px 0;
   }
 
   .mission__content {
@@ -1375,6 +1402,8 @@
     padding-left: 10px;
     margin-bottom: 15px;
   }
+
+  .card__form-item {}
 
   .card__form-item input[type=submit] {
     font-size: 14px;

@@ -112,34 +112,56 @@
 
         <!-- sec 4 form -->
 
-    <section id="form" class="card sec" :style="{ backgroundImage: `url(${homePageData.value[0].acf.sekcziya_4_forma.fon})`, backgroundSize: '0px' }">
+        <section id="form" class="card sec" :style="{ backgroundImage: `url(${homePageData.value[0].acf.sekcziya_4_forma.fon})`, backgroundSize: '0px' }">
 
-        <div class="card__wrapper">
-          <div class="card__abs"><img src="/assets/img/form_abs.png" alt="img"></div>
-          <div class="card__content container" :style="{ backgroundImage: `url(${homePageData.value[0].acf.sekcziya_4_forma.fon})`, backgroundSize: 'cover' }">
+            <div class="card__wrapper">
+              <div class="card__abs"><img src="/assets/img/form_abs.png" alt="img"></div>
+              <div class="card__content container" :style="{ backgroundImage: `url(${homePageData.value[0].acf.sekcziya_4_forma.fon})`, backgroundSize: 'cover' }">
 
-            <div class="card__form">
-              <h4 class="card__form-title">Бесплатный расчёт натальной карты</h4>
-              <div class="card__form-item">
-                <input type="text" placeholder="Дата рождения">
-                <div class="card__form-abs"><img src="/assets/img/svg/date-icon.svg" alt=""></div>
+                <div class="card__form">
+
+                    <div v-if="registFormStatus == false" class="card__form-wrapper-def">
+                        <h4 class="card__form-title">Бесплатный расчёт натальной карты</h4>
+                      <div class="card__form-item">
+                        <input type="text" placeholder="Дата рождения">
+                        <div class="card__form-abs"><img src="/assets/img/svg/date-icon.svg" alt=""></div>
+                      </div>
+                      <div class="card__form-item">
+                        <input type="text" placeholder="Время рождения">
+                        <div class="card__form-abs"><img src="/assets/img/svg/time-icon.svg" alt=""></div>
+                      </div>
+                      <div class="card__form-item">
+                        <input type="text" placeholder="Незнаю время рождения">
+                      </div>
+                      <div class="card__form-item">
+                        <input type="text" placeholder="Город рождения">
+                        <div class="card__form-abs"><img src="/assets/img/svg/pin-icon.svg" alt=""></div>
+                      </div>
+                      <div class="card__form-item" @click="registFormStatus = true">
+                        
+                        <input type="submit" value="Рассчитать Натальную карту"></div>
+                    </div> 
+
+                    <div class="card__form-wrapper-activ form-wrapper-activ" v-else>
+
+                      <div class="form-wrapper-activ__img-wrapper">
+                        <img src="@/assets/img/born_img-2.png" alt="" class="form-wrapper-activ__img">
+                      </div>
+                      <h4 class="form-wrapper-activ__title">Войдите в аккаунт для расчета натальной карты</h4>
+
+                      <div class="form-wrapper-activ__btn-wrapper">
+                        <a class="btn-secform login__btn main__btn"  @click="openLogin()">Вход</a>
+                        <a class="btn-secform reg__btn" @click="openRegistration()">Регистрация</a>
+                      </div>
+                      
+                    </div>
+
+                    </div>  
+              
+                 
               </div>
-              <div class="card__form-item">
-                <input type="text" placeholder="Время рождения">
-                <div class="card__form-abs"><img src="/assets/img/svg/time-icon.svg" alt=""></div>
-              </div>
-              <div class="card__form-item">
-                <input type="text" placeholder="Незнаю время рождения">
-              </div>
-              <div class="card__form-item">
-                <input type="text" placeholder="Город рождения">
-                <div class="card__form-abs"><img src="/assets/img/svg/pin-icon.svg" alt=""></div>
-              </div>
-              <div class="card__form-item"><input type="submit" value="Рассчитать Натальную карту"></div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
 
       <!-- reciews sec -->
@@ -258,11 +280,14 @@ import 'swiper/css/scrollbar';
 
 // import required modules
 import { Scrollbar, Pagination, Navigation } from 'swiper/modules';
+import { useCounterStore } from '@/stores/counter'
 
 
 export default {
   data(){
     return{
+      store: null,
+      registFormStatus: false,
         breakpoints: {
         250: {
           slidesPerView: 2,
@@ -313,6 +338,18 @@ export default {
     SwiperSlide,
   },
   methods: {
+
+   openRegistration(){
+    this.store.changePopupStatus(true)
+    this.store.changePopupName('popup-registration')
+  },
+
+    openLogin(){
+      this.store.changePopupStatus(true)
+      this.store.changePopupName('popup-login')
+    },
+
+
     scrollToSection(sectionId) {
       const element = document.getElementById(sectionId);
       if (element) {
@@ -371,6 +408,10 @@ export default {
       paginationWork,
       paginationReviews,
     };
+  },
+
+  mounted() {
+    this.store = useCounterStore()
   },
 };
 </script>

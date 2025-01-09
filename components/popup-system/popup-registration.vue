@@ -219,7 +219,13 @@ methods: {
                     this.errorText = 'Пользователь с таким именем уже существует'
                 }
                 else{
-                    alert('Произошла ошибка при регистрации, попробуйте позже')
+                 
+                    this.store.changeInfoAlertStatus(
+                    {
+                    'alertType': 3, 
+                    'alertText': 'Произошла ошибка при регистрации, попробуйте позже '
+                    }
+                    )
                 }
             }
 
@@ -227,7 +233,13 @@ methods: {
         .catch(error => {
             console.error('Ошибка:', error);
             this.errorText = 'Произошла ошибка при регистрации, попробуйте позже'
-            alert('ошибка при регистрации')
+        
+            this.store.changeInfoAlertStatus(
+                    {
+                        'alertType': 3, 
+                        'alertText': 'ошибка при регистрации '
+                    }
+                )
    
             // Обработка ошибки
         });
@@ -343,7 +355,12 @@ registerOrLoginWithYandex(token, username, email, yandexId, allData) {
         }
         else{
           console.log('Error')
-          alert('ошибка при авторизации Yandex ID')
+          this.store.changeInfoAlertStatus(
+            {
+            'alertType': 3, 
+            'alertText': 'ошибка при авторизации Yandex ID'
+            }
+            )
         }
       }
 
@@ -353,7 +370,13 @@ registerOrLoginWithYandex(token, username, email, yandexId, allData) {
   .catch(error => {
       console.error('Ошибка:', error);
      
-      alert('ошибка при авторизации Yandex ID')
+
+      this.store.changeInfoAlertStatus(
+            {
+            'alertType': 3, 
+            'alertText': 'ошибка при авторизации Yandex ID'
+            }
+            )
 
       // Обработка ошибки
   });
@@ -400,19 +423,37 @@ const url = this.store.urlQuery + '/wp-json/jwt-auth/v1/token'
           localStorage.setItem('jwtToken', result.token);
           this.store.changeAutorisationStatus(true)
           this.$router.push('/account')
-          alert('Успешная авторизация user:', nameUser)
+         
+          this.store.changeInfoAlertStatus(
+            {
+            'alertType': 1, 
+            'alertText': 'Успешная авторизация пользывателя'
+            }
+            )
+
           this.closePopupStatus()
           this.errorText = null
       }
       else{
-          alert('ошибка при авторизации')
+        this.store.changeInfoAlertStatus(
+        {
+        'alertType': 3, 
+        'alertText': 'ошибка при авторизации'
+        }
+        )
           this.errorText = 'ошибка при авторизации, проверте введенные данные'
       }
 
   })
   .catch(error => {
       console.error('Ошибка:', error);
-      alert('ошибка при авторизации')
+
+      this.store.changeInfoAlertStatus(
+        {
+        'alertType': 3, 
+        'alertText': 'ошибка при авторизации'
+        }
+        )
 
       // Обработка ошибки
   });

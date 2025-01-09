@@ -138,19 +138,38 @@ methods: {
                 localStorage.setItem('jwtToken', result.token);
                 this.store.changeAutorisationStatus(true)
                 this.$router.push('/account')
-                alert('Успешная авторизация user:', nameUser)
+
+
+                this.store.changeInfoAlertStatus(
+                  {
+                      'alertType': 1, 
+                      'alertText': 'Успешная авторизация пользывателя'
+                  }
+              )
+
                 this.closePopupStatus()
                 this.errorText = null
             }
             else{
-                alert('ошибка при авторизации')
+              this.store.changeInfoAlertStatus(
+                  {
+                      'alertType': 3, 
+                      'alertText': 'Ошибка при авторизации, проверте введенные данные'
+                  }
+              ) 
+
                 this.errorText = 'ошибка при авторизации, проверте введенные данные'
             }
 
         })
         .catch(error => {
             console.error('Ошибка:', error);
-            alert('ошибка при авторизации')
+            this.store.changeInfoAlertStatus(
+                  {
+                      'alertType': 3, 
+                      'alertText': 'Ошибка при авторизации'
+                  }
+              ) 
    
             // Обработка ошибки
         });
@@ -266,7 +285,13 @@ methods: {
               }
               else{
                 console.log('Error')
-                alert('ошибка при авторизации Yandex ID')
+     
+                this.store.changeInfoAlertStatus(
+                    {
+                        'alertType': 3, 
+                        'alertText': 'ошибка при авторизации Yandex ID'
+                    }
+                )
               }
             }
 
@@ -276,7 +301,12 @@ methods: {
         .catch(error => {
             console.error('Ошибка:', error);
            
-            alert('ошибка при авторизации Yandex ID')
+            this.store.changeInfoAlertStatus(
+                  {
+                      'alertType': 3, 
+                      'alertText': 'ошибка при авторизации Yandex ID'
+                  }
+              )
    
             // Обработка ошибки
         });
@@ -323,19 +353,39 @@ methods: {
                 localStorage.setItem('jwtToken', result.token);
                 this.store.changeAutorisationStatus(true)
                 this.$router.push('/account')
-                alert('Успешная авторизация user:', nameUser)
+              
+
+                this.store.changeInfoAlertStatus(
+                    {
+                        'alertType': 1, 
+                        'alertText': 'Успешная авторизация пользывателя'
+                    }
+                )
+
                 this.closePopupStatus()
                 this.errorText = null
             }
             else{
-                alert('ошибка при авторизации')
+               
+                this.store.changeInfoAlertStatus(
+                    {
+                        'alertType': 3, 
+                        'alertText': 'ошибка при авторизации '
+                    }
+                )
                 this.errorText = 'ошибка при авторизации, проверте введенные данные'
             }
 
         })
         .catch(error => {
             console.error('Ошибка:', error);
-            alert('ошибка при авторизации')
+          
+            this.store.changeInfoAlertStatus(
+                    {
+                        'alertType': 3, 
+                        'alertText': 'ошибка при авторизации '
+                    }
+                )
    
             // Обработка ошибки
         });

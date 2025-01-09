@@ -16,22 +16,23 @@
                     </NuxtLink>
                 </li>
 
+                <li v-if="$route.path === '/'">
+                  <a  @click="scrollToSection('reviews')">Отзывы  </a>  
+                </li>
+
+                <li v-if="$route.path === '/'">
+                  <a  @click="scrollToSection('how-work')">Как работает</a>  
+                </li>
+
+                <li  v-if="$route.path === '/'">
+                  <a  @click="scrollToSection('about-us')">О нас</a>  
+                </li>
+
+
                 <li>
                     <NuxtLink to="/our-blog/">
                         Блог                                                        
                     </NuxtLink>
-                </li>
-
-                <li>
-                  <a  @click="scrollToSection('reviews')">Отзывы  </a>  
-                </li>
-
-                <li>
-                  <a  @click="scrollToSection('how-work')">Как работает</a>  
-                </li>
-
-                <li>
-                  <a  @click="scrollToSection('about-us')">О нас</a>  
                 </li>
 
 

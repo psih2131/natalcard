@@ -18,6 +18,9 @@ export const useCounterStore = defineStore('counter', () => {
         'user-name': null,
         'user-email': null,
     })
+    const infoAlertStatus = ref({
+        'alertType': null, 'alertText': ''
+    })
 
 
 
@@ -73,6 +76,13 @@ export const useCounterStore = defineStore('counter', () => {
         }
     }
 
+    //change info alert
+    function changeInfoAlertStatus(newPopupStatus) {
+        infoAlertStatus.value = newPopupStatus
+        console.log('alert status', infoAlertStatus.value)
+    }
+
+
 
 
 
@@ -88,6 +98,7 @@ export const useCounterStore = defineStore('counter', () => {
         popupName,
         userMainData,
         autorisationStatus,
+        infoAlertStatus,
 
         changeAllPosts,
         changeAllCategory,
@@ -97,6 +108,7 @@ export const useCounterStore = defineStore('counter', () => {
         changeUserMainData,
         changeAutorisationStatus,
         checkTokenAutorisation,
+        changeInfoAlertStatus,
 
     }
 })

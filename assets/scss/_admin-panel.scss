@@ -793,9 +793,126 @@
 
     .wp-redactor {
         color: #161618;
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin-bottom: 15px;
+        }
+
+        p {
+            line-height: 1.5;
+        }
     }
 }
 
 .natal-prognoz__planet-element_activ {
     background: #6F6AC3;
+}
+
+.house-prognoz__value-containert {
+    .natal-prognoz__value-container-header-text {
+        margin-left: 0;
+        display: flex;
+        align-items: center;
+        padding-left: 0;
+    }
+
+    .natal-prognoz__value-container-header {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .natal-prognoz__value-container-body {
+        padding-bottom: 40px;
+    }
+
+    .natal-prognoz__value-container-header-subtitle {
+        margin-top: 0;
+        margin-left: 20px;
+        padding-left: 20px;
+        border-left: 1px solid #ccc;
+    }
+
+
+}
+
+.house-prognoz-list__element {
+    width: calc(25% - 15px);
+}
+
+.natal-prognoz__block {
+    border: 1px solid rgba(154, 238, 192, 0.29);
+
+    transition: all ease 0.3s;
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    background: #222;
+    border-radius: 10px;
+    padding: 45px 0;
+    margin-top: 20px;
+
+    &:hover {
+        border: 1px solid rgba(154, 238, 192, 1);
+        transition: all ease 0.3s;
+
+    }
+}
+
+.natal-prognoz__block-icon-row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.natal-prognoz__block-icon-wrapper {
+    background: #161618;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border: solid 1px rgba(255, 255, 255, 0.17);
+}
+
+.natal-prognoz__block-title {
+    text-align: center;
+    color: #FFF;
+
+    text-align: center;
+    margin-top: 30px;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.natal-prognoz__block-btn-row {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.natal-prognoz__ascedant {
+    .natal-prognoz__value-container-body {
+        padding: 45px 30px;
+    }
+}
+
+.natal-prognoz__ascedant-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #222;
+}
+
+.natal-prognoz__btn-read-more {
+    margin-top: 30px;
+    cursor: pointer;
 }

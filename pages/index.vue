@@ -118,30 +118,97 @@
               <div class="card__abs"><img src="/assets/img/form_abs.png" alt="img"></div>
               <div class="card__content container" :style="{ backgroundImage: `url(${homePageData.value[0].acf.sekcziya_4_forma.fon})`, backgroundSize: 'cover' }">
 
-                <div class="card__form">
+                <div class="card__form card__form-home">
 
                     <div v-if="registFormStatus == false" class="card__form-wrapper-def">
                         <h4 class="card__form-title">Бесплатный расчёт натальной карты</h4>
-                      <div class="card__form-item">
-                        <input type="text" placeholder="Дата рождения">
-                        <div class="card__form-abs"><img src="/assets/img/svg/date-icon.svg" alt=""></div>
-                      </div>
-                      <div class="card__form-item">
-                        <input type="text" placeholder="Время рождения">
-                        <div class="card__form-abs"><img src="/assets/img/svg/time-icon.svg" alt=""></div>
-                      </div>
-                      <div class="card__form-item">
-                        <input type="text" placeholder="Незнаю время рождения">
-                      </div>
-                      <div class="card__form-item">
-                        <input type="text" placeholder="Город рождения">
-                        <div class="card__form-abs"><img src="/assets/img/svg/pin-icon.svg" alt=""></div>
-                      </div>
-                      <div class="card__form-item" @click="registFormStatus = true">
+                        <div class="account-natal-data-sec__data-wrapper form-home-page">
+                
+                          <!-- date born -->
+                          <div class="account-natal-data-sec__time-wrapper">
+          
+                            <VueDatePicker
+                            ref="dateComponent" 
+                            v-model="dateBorn" 
+                            model-type="yyyy-MM-dd"
+                            :enable-time-picker="false"
+                            :placeholder="'Выберите дату рождения'"
+                            locale="ru" 
+                            cancelText="отменить" 
+                            selectText="выбрать"
+                  
+                            ></VueDatePicker>
+          
+                            
+          
+                          </div>
+          
+                          <!-- time born -->
+                          <div class="account-natal-data-sec__time-wrapper" :class="{'forgetTime': forgetTime == true}">
                         
-                        <input type="submit" value="Рассчитать Натальную карту"></div>
+                            <VueDatePicker 
+                            v-model="timeBorn" 
+                            time-picker
+                            :placeholder="'Выберите время рождения'"
+                            locale="ru"
+                            cancelText="отменить" 
+                            selectText="выбрать"  />
+          
+                           
+          
+                          </div>
+          
+                          <div class="account-natal-data-sec__forged-time" :class="{'forgetTimeChckbox': forgetTime == true}">
+                            <p class="account-natal-data-sec__forget">Я не знаю точное время</p>
+                            <label for="">
+                              <input type="checkbox" v-model="forgetTime">
+                            </label>
+                          </div>
+                      
+          
+          
+                          <!-- location born -->
+                          <div class="account-natal-data-sec__location-wrapper location-wrapper">
+          
+                            <div class="location-wrapper__input-wrapper">
+                              <div class="location-wrapper__input-wrapper-search">
+                                <div class="location-wrapper__input-wrapper-search-row">
+                                  <div class="location-wrapper__input-container">
+                                    <input
+                                    
+                                
+                                      placeholder="Укажите место рождения"
+                                    /> 
+                   
+                                  </div>
+                                 
+          
+             
+                                </div>
+
+          
+                              </div>
+          
+                    
+          
+                            </div>
+    
+  
+          
+                     
+                          </div>
+          
+                          <div class="account-natal-data-sec__btn">
+                            <button  @click="registFormStatus = true">Произвести расчет</button>
+                          </div>
+                         
+                      </div>
                     </div> 
 
+
+
+
+                   
                     <div class="card__form-wrapper-activ form-wrapper-activ" v-else>
 
                       <div class="form-wrapper-activ__img-wrapper">
@@ -276,6 +343,7 @@
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
+import VueDatePicker from '@vuepic/vue-datepicker';
 
 
 // import required modules
@@ -287,6 +355,11 @@ export default {
   data(){
     return{
       store: null,
+
+      dateBorn:null,
+      timeBorn: null,
+      forgetTime: false,
+
       registFormStatus: false,
         breakpoints: {
         250: {
@@ -336,6 +409,7 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
+    VueDatePicker
   },
   methods: {
 

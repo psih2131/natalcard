@@ -188,11 +188,25 @@ export default {
                     console.log('Успешно удален:', result);
 
                     if (result.success) {
-                        alert('Ваш аккаунт успешно удален')
+                   
+                        this.store.changeInfoAlertStatus(
+                        {
+                        'alertType': 1, 
+                        'alertText': 'Ваш аккаунт успешно удален'
+                        }
+                        )
+
                         this.logout()
                     }
                 })
                 .catch(error => {
+                    this.store.changeInfoAlertStatus(
+                    {
+                    'alertType': 3, 
+                    'alertText': 'Ошибка при удалении аккаунта'
+                    }
+                    )
+
                     console.error('Ошибка при удалении аккаунта:', error);
                 });
         },

@@ -5,6 +5,8 @@
     </NuxtLayout>
 
     <preloaderSystem />
+    <notificationSystem />
+
   </div>
 </template>
 
@@ -13,6 +15,7 @@
 
 import { useCounterStore } from '@/stores/counter.js'
 import preloaderSystem from '@/components/preloader.vue'
+import notificationSystem from '@/components/inform-alert-system/inform-alert-system-controller.vue'
 
 
 
@@ -25,7 +28,8 @@ export default {
     },
 
     components: {
-      preloaderSystem
+      preloaderSystem,
+      notificationSystem,
     },
 
     methods: {

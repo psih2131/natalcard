@@ -175,27 +175,13 @@
                                 <div class="location-wrapper__input-wrapper-search-row">
                                   <div class="location-wrapper__input-container">
                                     <input
-                                    
-                                
                                       placeholder="Укажите место рождения"
                                     /> 
                    
                                   </div>
-                                 
-          
-             
                                 </div>
-
-          
                               </div>
-          
-                    
-          
                             </div>
-    
-  
-          
-                     
                           </div>
           
                           <div class="account-natal-data-sec__btn">
@@ -356,9 +342,7 @@ export default {
     return{
       store: null,
 
-      dateBorn:null,
-      timeBorn: null,
-      forgetTime: false,
+      
 
       registFormStatus: false,
         breakpoints: {
@@ -432,6 +416,11 @@ export default {
     }
   },
   setup() {
+
+    let dateBorn  = ref(null);
+    let timeBorn = ref(null); 
+    let forgetTime = ref(false); 
+
     const loadStatus = ref(false);
     const homePageData = ref([]); // Реактивная переменная для хранения данных страницы
 
@@ -442,6 +431,7 @@ export default {
         
       console.log(homePageData.value); // Выводим данные в консоль
       loadStatus.value = true
+
     };
 
     // Вызываем функцию для получения данных
@@ -477,6 +467,9 @@ export default {
     return {
       homePageData,
       loadStatus,
+      dateBorn,
+      timeBorn,
+      forgetTime,
     
       modules: [Scrollbar, Pagination, Navigation],
       paginationWork,
@@ -486,6 +479,7 @@ export default {
 
   mounted() {
     this.store = useCounterStore()
+    console.log('component data',this.VueDatePicker)
   },
 };
 </script>

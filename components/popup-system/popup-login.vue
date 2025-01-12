@@ -143,7 +143,7 @@ methods: {
                 this.store.changeInfoAlertStatus(
                   {
                       'alertType': 1, 
-                      'alertText': 'Успешная авторизация пользывателя'
+                      'alertText': 'Успешная авторизация пользователя'
                   }
               )
 
@@ -186,9 +186,9 @@ methods: {
             {
               client_id: '981e67812f0a4543bf818fde759d3069',
               response_type: 'token',
-              redirect_uri: 'https://natalnaya-karta-online.ru/test',
+              redirect_uri: 'http://localhost:3000/test',
             },
-            'https://natalnaya-karta-online.ru',
+            'http://localhost:3000',
             {
               view: 'button',
               parentId: 'yandexIdButton',
@@ -358,7 +358,7 @@ methods: {
                 this.store.changeInfoAlertStatus(
                     {
                         'alertType': 1, 
-                        'alertText': 'Успешная авторизация пользывателя'
+                        'alertText': 'Успешная авторизация пользователя'
                     }
                 )
 

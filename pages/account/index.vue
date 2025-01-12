@@ -659,7 +659,7 @@ export default {
             
             ascedant: null,
 
-            typeAccount: 1,
+            typeAccount: 2,
       
             
         }
@@ -749,7 +749,7 @@ export default {
           this.dateBornErrorText = null
         }
 
-        if(this.$dataforgetTime == true){
+        if(this.forgetTime == true){
           this.timeBornErrorText = null
         }
         else{

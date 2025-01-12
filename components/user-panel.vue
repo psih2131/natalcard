@@ -45,7 +45,7 @@
                     </li>
 
                     <li class="user-panel__li">
-                        <NuxtLink to="https://t.me/bunny_wh1te" class="user-panel__li-link" @click="closeUserPanel()">
+                        <NuxtLink to="mailto:mail:support@natalnaya-karta-online.ru" class="user-panel__li-link" @click="closeUserPanel()">
                             <p class="user-panel__li-link-text">
                                 Техподдержка
                             </p>

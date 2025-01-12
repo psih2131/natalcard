@@ -127,7 +127,7 @@
                           <!-- date born -->
                           <div class="account-natal-data-sec__time-wrapper">
           
-                            <VueDatePicker
+                            <VueDatePicker v-if="showDataPicker" 
                             ref="dateComponent" 
                             v-model="dateBorn" 
                             model-type="yyyy-MM-dd"
@@ -146,7 +146,7 @@
                           <!-- time born -->
                           <div class="account-natal-data-sec__time-wrapper" :class="{'forgetTime': forgetTime == true}">
                         
-                            <VueDatePicker 
+                            <VueDatePicker v-if="showDataPicker" 
                             v-model="timeBorn" 
                             time-picker
                             :placeholder="'Выберите время рождения'"
@@ -164,6 +164,8 @@
                               <input type="checkbox" v-model="forgetTime">
                             </label>
                           </div>
+
+                          <p class="asd" @click="showDataPicker = !showDataPicker">adasdsad</p>
                       
           
           
@@ -420,6 +422,7 @@ export default {
     let dateBorn  = ref(null);
     let timeBorn = ref(null); 
     let forgetTime = ref(false); 
+    let showDataPicker  = ref(false);
 
     const loadStatus = ref(false);
     const homePageData = ref([]); // Реактивная переменная для хранения данных страницы
@@ -470,6 +473,7 @@ export default {
       dateBorn,
       timeBorn,
       forgetTime,
+      showDataPicker,
     
       modules: [Scrollbar, Pagination, Navigation],
       paginationWork,

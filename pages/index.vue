@@ -120,7 +120,8 @@
 
                 <div class="card__form card__form-home">
 
-                    <div v-if="registFormStatus == false" class="card__form-wrapper-def">
+                  <template v-if="authStatus == false">
+                      <div v-if="registFormStatus == false" class="card__form-wrapper-def">
                         <h4 class="card__form-title">Бесплатный расчёт натальной карты</h4>
                         <div class="account-natal-data-sec__data-wrapper form-home-page">
                 
@@ -154,7 +155,7 @@
                             cancelText="отменить" 
                             selectText="выбрать"  />
           
-                           
+                          
           
                           </div>
           
@@ -177,7 +178,7 @@
                                     <input
                                       placeholder="Укажите место рождения"
                                     /> 
-                   
+                  
                                   </div>
                                 </div>
                               </div>
@@ -187,27 +188,45 @@
                           <div class="account-natal-data-sec__btn">
                             <button  @click="registFormStatus = true">Произвести расчет</button>
                           </div>
-                         
+                        
                       </div>
                     </div> 
 
+                    <template v-else>
+                      <div class="card__form-wrapper-activ form-wrapper-activ" >
+                      
+                        <div class="form-wrapper-activ__img-wrapper">
+                          <img src="@/assets/img/born_img-2.png" alt="" class="form-wrapper-activ__img">
+                        </div>
+                        <h4 class="form-wrapper-activ__title">Войдите в аккаунт для расчета натальной карты</h4>
 
+                        <div class="form-wrapper-activ__btn-wrapper">
+                          <a class="btn-secform login__btn main__btn"  @click="openLogin()">Вход</a>
+                          <a class="btn-secform reg__btn" @click="openRegistration()">Регистрация</a>
+                        </div>
 
+                    </div>
 
-                   
-                    <div class="card__form-wrapper-activ form-wrapper-activ" v-else>
+                    </template>
+                  </template>
 
+                  <template v-else>
+                    <div class="card__form-wrapper-activ form-wrapper-activ form-wrapper-auth" >
+                      
                       <div class="form-wrapper-activ__img-wrapper">
                         <img src="@/assets/img/born_img-2.png" alt="" class="form-wrapper-activ__img">
                       </div>
-                      <h4 class="form-wrapper-activ__title">Войдите в аккаунт для расчета натальной карты</h4>
+                      <h4 class="form-wrapper-activ__title">Ваш аккаунт авторизован</h4>
 
                       <div class="form-wrapper-activ__btn-wrapper">
-                        <a class="btn-secform login__btn main__btn"  @click="openLogin()">Вход</a>
-                        <a class="btn-secform reg__btn" @click="openRegistration()">Регистрация</a>
+                        <NuxtLink to="/account/" class="btn-secform login__btn main__btn" @click="closeUserPanel()">Расчитать натальную карту</NuxtLink>
                       </div>
-                      
-                    </div>
+
+                  </div>
+                  </template>
+
+                 
+                
 
                     </div>  
               
@@ -342,6 +361,7 @@ export default {
   data(){
     return{
       store: null,
+      authStatus: false,
 
       
 
@@ -478,9 +498,25 @@ export default {
     };
   },
 
+  computed:{
+    authStatusStore(){
+      let localStore = useCounterStore()
+      return localStore.autorisationStatus
+    }
+  },
+
+  watch: {
+    authStatusStore(newValue, oldValue){
+      console.log('autorisation ',  this.store.autorisationStatus)
+      this.authStatus = this.store.autorisationStatus
+    }
+  },
+
   mounted() {
     this.store = useCounterStore()
     console.log('component data',this.VueDatePicker)
+    this.authStatus = this.store.autorisationStatus
+    
   },
 };
 </script>

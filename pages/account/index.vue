@@ -443,7 +443,7 @@
                 <div class="natal-prognoz__planet-element house-prognoz-list__element" v-for="(item, index) in houses " :key="index" 
                 :class="{'natal-prognoz__planet-element_activ': currentHousesSelected == index}"
                 @click="currentHousesSelected = index">
-                  <img :src="`/_nuxt/assets/img/houses/h${item.house}.svg`" alt="" class="natal-prognoz__planet-element-img">
+                  <img :src="houseImg[+item.house]" alt="" class="natal-prognoz__planet-element-img">
                   <p class="natal-prognoz__planet-element-title">{{item.house}} Дом</p>
                   <p class="natal-prognoz__planet-element-subtitle">{{getHouseSubtitle(item.house)}}</p>
                 </div>
@@ -565,6 +565,26 @@ import imgUranus from '@/assets/img/planets/uranus.png';
 import imgNeptun from '@/assets/img/planets/neptun.png';
 import imgPluton from '@/assets/img/planets/pluton.png';
 
+
+
+//houses img
+import h1 from '@/assets/img/houses/h1.svg';
+import h2 from '@/assets/img/houses/h2.svg';
+import h3 from '@/assets/img/houses/h3.svg';
+import h4 from '@/assets/img/houses/h4.svg';
+import h5 from '@/assets/img/houses/h5.svg';
+import h6 from '@/assets/img/houses/h6.svg';
+import h7 from '@/assets/img/houses/h7.svg';
+import h8 from '@/assets/img/houses/h8.svg';
+import h9 from '@/assets/img/houses/h9.svg';
+import h10 from '@/assets/img/houses/h10.svg';
+import h11 from '@/assets/img/houses/h11.svg';
+import h12 from '@/assets/img/houses/h12.svg';
+
+
+
+
+
 export default {
     data() {
         return {
@@ -660,6 +680,7 @@ export default {
             ascedant: null,
 
             typeAccount: 2,
+            houseImg: [h1,h2,h3,h4,h5,h6,h7,h8,h9,h10,h11,h12]
       
             
         }

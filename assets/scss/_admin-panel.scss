@@ -805,6 +805,33 @@
 
         p {
             line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        hr {
+            margin-bottom: 30px;
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            li {
+                margin-bottom: 15px;
+                padding-left: 20px;
+                position: relative;
+                font-size: 16px;
+                line-height: 1.5;
+
+                &::before {
+                    width: 7px;
+                    height: 7px;
+                    position: absolute;
+                    content: "";
+                    border-radius: 100px;
+                    background: #222;
+                    left: 0;
+                    top: 6px;
+                }
+            }
         }
     }
 }

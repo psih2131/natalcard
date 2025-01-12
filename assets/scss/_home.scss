@@ -231,9 +231,10 @@
     right: 24px;
     z-index: 1;
     content: '';
-    background: url('../img/svg/arrow-r.svg');
+    background: url('../img/svg/arrow-l.svg');
     background-position: center;
     background-repeat: no-repeat;
+    transform: rotate(180deg);
     width: 182px !important;
     height: 62px !important;
   }

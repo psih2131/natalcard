@@ -4,7 +4,7 @@
       <section class="account-natal-front-sec">
         <div class="container">
           <div class="account-natal-front-sec__info">
-            <h1 class="account-natal-front-sec__title">Открой свое Истинное "Я" С помощью Звезд</h1>
+            <h1 class="account-natal-front-sec__title">Рассчитать натальную карту онлайн</h1>
             <p class="account-natal-front-sec__subtitle">Натальная карта — это астрологическая карта, созданная на основе даты, времени и места вашего рождения. Она отражает расположение планет в момент вашего появления на свет, что оказывает значительное влияние на вашу личность, цели, карьеру, отношения и многое другое. Каждый человек уникален, и ваша натальная карта — это ключ к пониманию своего внутреннего мира и потенциала</p>
           </div>
           <div class="account-natal-front-sec__img-wrapper">
@@ -679,7 +679,7 @@ export default {
             
             ascedant: null,
 
-            typeAccount: 2,
+            typeAccount: 1,
             houseImg: [h1,h2,h3,h4,h5,h6,h7,h8,h9,h10,h11,h12]
       
             

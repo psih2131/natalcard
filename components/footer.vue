@@ -55,7 +55,7 @@
             </div>
           </div>
           <div class="footer__down">
-            <p class="footer__razrab">© 2024 | nordface</p>
+            <p class="footer__razrab">© 2025 | natalnaya-karta-online.ru</p>
             <div class="footer__links">
               
                 <NuxtLink v-for="item in currentList(pagesList)" :key="item" :to="`/docs/${item.slug}`" class="footer__link" >

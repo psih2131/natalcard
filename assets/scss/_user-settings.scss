@@ -132,3 +132,41 @@
     color: #fff;
     margin-left: 20px;
 }
+
+
+@media only screen and (max-width: 750px) {
+    .user-settings__container {
+        width: 350px;
+    }
+
+    .user-settings__table-name {
+        font-size: 14px;
+    }
+
+    .user-settings__table-value {
+        font-size: 14px;
+    }
+
+    .user-settings__login {
+        font-size: 18px;
+    }
+
+    .user-settings__data-table-btn-row .logout-btn {
+        width: calc(50% - 10px);
+        margin-left: 0;
+        font-size: 12px;
+        padding: 12px 0;
+
+    }
+
+    .del-btn {
+        width: calc(50% - 10px);
+        margin-left: 0;
+        font-size: 12px;
+        padding: 12px 0;
+    }
+
+    .user-settings__data-table-btn-row {
+        justify-content: space-between;
+    }
+}

@@ -256,9 +256,9 @@ if (window.YaAuthSuggest) {
       {
         client_id: '981e67812f0a4543bf818fde759d3069',
         response_type: 'token',
-        redirect_uri: 'http://localhost:3000/test',
+        redirect_uri: 'https://natalnaya-karta-online.ru/test',
       },
-      'http://localhost:3000',
+      'https://natalnaya-karta-online.ru',
       {
         view: 'button',
         parentId: 'yandexIdButton',

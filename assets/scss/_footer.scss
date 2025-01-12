@@ -225,4 +225,14 @@
   .footer {
     padding: 50px 0 25px 0;
   }
+
+  .footer__nav-wrapper,
+  .footer__contacts {
+    width: calc(50% - 10px);
+  }
+
+  .footer__link {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
 }

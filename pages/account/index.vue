@@ -1408,6 +1408,13 @@ export default {
                 console.log('Успешный ответ:', result);
 
                 this.userData = result
+
+                if(this.userData.acf && this.userData.acf.тип_акаунта){
+                  this.typeAccount = +this.userData.acf.тип_акаунта
+                }
+                else{
+                  this.typeAccount = 1
+                }
                 this.getPrognozDataList()
                 
 

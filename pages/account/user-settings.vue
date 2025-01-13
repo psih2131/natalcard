@@ -45,7 +45,7 @@
     
                     </div>
                     <div class="user-settings__data-table-btn-row">
-                        <!-- <button class="edit-btn">Редактирывать</button> -->
+                        <button class="edit-btn">Отменить подписку</button>
                         <button class="logout-btn" @click="logout()">Выйти из аккаунта</button>
                         <button class="del-btn" @click="delAccount()">Удалить аккаунт</button>
                     </div>

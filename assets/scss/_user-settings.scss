@@ -169,4 +169,13 @@
     .user-settings__data-table-btn-row {
         justify-content: space-between;
     }
+
+    .user-settings__data-table-btn-row {
+        flex-wrap: wrap;
+    }
+
+    .edit-btn {
+        width: 100%;
+        margin-bottom: 20px;
+    }
 }

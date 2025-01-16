@@ -1229,5 +1229,20 @@
         }
     }
 
+    .account-natal-data-sec__icon-wrapper {
+        display: none;
+    }
+
+    .account-natal-data-sec__info-wrapper {
+        width: 100%;
+    }
+
+    .account-natal-data-sec .container {
+        padding: 0;
+    }
+
+    .location-wrapper__input-container input {
+        font-size: 14px;
+    }
 
 }

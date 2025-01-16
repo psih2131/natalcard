@@ -75,3 +75,13 @@
         transition: all ease 0.7s;
     }
 }
+
+@media only screen and (max-width: 750px) {
+    .inform-alert-system__close {
+        right: 0;
+    }
+
+    .inform-alert-system__element {
+        max-width: 95%;
+    }
+}

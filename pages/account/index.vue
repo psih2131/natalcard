@@ -396,7 +396,7 @@
                   <div class="wp-redactor" v-html="getCurrentZodiacData(planets[currentPlanetSelected].name, getZodiacV2(planets[currentPlanetSelected].lon, planets[currentPlanetSelected].name))">
                   </div>
 
-                  <a class="natal-chart-list__btn-create natal-prognoz__btn-read-more">Читать полностью</a>
+                  <a class="natal-chart-list__btn-create natal-prognoz__btn-read-more" @click="goToPayPopupForm()">Читать полностью</a>
                  
                 </div>
               </div>
@@ -429,7 +429,7 @@
                 </div>
                 <p class="natal-prognoz__block-title">Данна информация доступна только по подписке</p>
                 <div class="natal-prognoz__block-btn-row">
-                  <button class="natal-chart-list__btn-create">Оформить подписку</button>
+                  <button class="natal-chart-list__btn-create" @click="goToPayPopupForm()">Оформить подписку</button>
                 </div>
                  
               </div>
@@ -482,7 +482,7 @@
                 </div>
                 <p class="natal-prognoz__block-title">Данна информация доступна только по подписке</p>
                 <div class="natal-prognoz__block-btn-row">
-                  <button class="natal-chart-list__btn-create">Оформить подписку</button>
+                  <button class="natal-chart-list__btn-create" @click="goToPayPopupForm()">Оформить подписку</button>
                 </div>
                  
               </div>
@@ -695,6 +695,12 @@ export default {
     },
 
     methods: {
+
+      goToPayPopupForm(){
+          this.store.changePopupStatus(true)
+          this.store.changePopupName('popup-pay-form')
+      },
+
 
       newNatalChart(){
         if(this.typeAccount == 2){

@@ -205,3 +205,160 @@
 .popup-user-created__btn-row {
     margin-top: 40px;
 }
+
+
+
+// pay form popup
+.popup-pay-form {
+    width: 750px;
+    padding: 0;
+    border-radius: 20px;
+    background: #303031;
+}
+
+.popup-pay-form__wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.popup-pay-form__img-wrapper {
+    width: 50%;
+    height: 505px;
+    border-radius: 0 20px 20px 0;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
+}
+
+.popup-pay-form__info {
+    width: 50%;
+}
+
+.popup-pay-form__info {
+    padding: 35px 25px;
+}
+
+.popup-pay-form__services-element {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.popup-pay-form__services-element-icon-wraper {
+    width: 20px;
+    height: 20px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #6F6AC3;
+
+    svg {
+        display: block;
+        width: 10px;
+        height: auto;
+    }
+}
+
+.popup-pay-form__services-element-data {
+    width: calc(100% - 20px);
+    font-size: 13px;
+    font-weight: 300;
+    padding-left: 15px;
+}
+
+.popup-pay-form__fields-wrapper {
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    .button-popup-wrapper {
+        margin-top: 20px;
+
+        button {
+            border-radius: 10px;
+        }
+    }
+}
+
+.popup-pay-form__confirm-list-wrapper {
+    .personal-data-checbox {
+        margin-bottom: 20px;
+    }
+
+    .personal-data-checbox__text {
+        font-size: 12px;
+        color: #fff;
+
+        a {
+            text-decoration: underline;
+        }
+    }
+}
+
+
+
+@media only screen and (max-width: 825px) {
+    .popup__close-btn {
+        right: -3px;
+    }
+
+    .popup-pay-form {
+        width: calc(100% - 30px);
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .popup-pay-form__wrapper {
+        flex-wrap: wrap;
+    }
+
+    .popup-pay-form {
+        width: 350px;
+    }
+
+    .popup-pay-form__info {
+        width: 100%;
+        padding: 20px;
+        order: 1;
+    }
+
+    .popup-pay-form__img-wrapper {
+        width: 100%;
+        height: 220px;
+        border-radius: 20px 20px 0 0;
+    }
+
+    .popup-pay-form__services-element-data {
+        font-size: 12px;
+    }
+
+    .popup-pay-form__services-element {
+        align-items: center;
+    }
+
+    .popup-pay-form__fields-wrapper {
+        padding: 10px 0 20px 0;
+    }
+
+    .popup-pay-form__confirm-list-wrapper .personal-data-checbox__text {
+        font-size: 11px;
+    }
+
+    .popup-pay-form__confirm-list-wrapper .personal-data-checbox {
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .popup-registration {
+        width: 350px;
+        padding: 30px 20px;
+    }
+}

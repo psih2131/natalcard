@@ -909,7 +909,7 @@ export default {
 
         console.log(currentDate, currentTime)
 
-        let inputDateTime = `${currentDate} ${currentTime}`
+        let inputDateTime = `${currentDate}T${currentTime}`
 
         dateAndTimeUTCConvert = this.calculateTimeInUTC(curentLocation.lng, inputDateTime )
 
@@ -930,30 +930,14 @@ export default {
 
 
       calculateTimeInUTC(longitude, inputDateTime) {
-        // // Рассчитываем смещение в минутах по долготе (15° долготы = 1 час)
-        // const offset = Math.floor(longitude / 15) * 60;
+        console.log(longitude)
+        // Рассчитываем смещение в минутах по долготе (15° долготы = 1 час)
+        let offset = Math.floor(longitude / 15) * 60;
+        let curentData = moment(inputDateTime).utcOffset(offset).utc().format("YYYY-MM-DDTHH:mm:ss[Z]"); // Форматируем в ISO 8601 с Z
 
-        // // Преобразуем дату и время с учётом смещения и переводим в UTC
-        // return moment(inputDateTime)
-        //   .utcOffset(offset) // Устанавливаем локальное смещение
-        //   .utc() // Переводим в UTC
-        //   .format("YYYY-MM-DDTHH:mm:ss[Z]"); // Форматируем в ISO 8601 с Z
-
-
-        // Преобразуем строку даты в стандартный формат
-        // Преобразуем строку даты в стандартный формат
-        const formattedDateTime = inputDateTime
-          .replace(/\s+/g, "T") // Преобразуем пробел в "T"
-          .replace(/(\d):(\d)/g, (match, h, m) => h.padStart(2, "0") + ":" + m.padStart(2, "0")); // Делаем часы и минуты двузначными
-
-        // Рассчитываем смещение
-        const offset = Math.floor(longitude / 15) * 60;
-
-        // Преобразуем дату и возвращаем результат
-        return moment(formattedDateTime)
-          .utcOffset(offset)
-          .utc()
-          .format("YYYY-MM-DDTHH:mm:ss[Z]");
+        console.log('calculateTimeInUTC:',curentData)
+        // Преобразуем дату и время с учётом смещения и переводим в UTC
+        return curentData
       },
 
 

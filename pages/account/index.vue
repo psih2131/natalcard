@@ -914,6 +914,7 @@ export default {
         dateAndTimeUTCConvert = this.calculateTimeInUTC(curentLocation.lng, inputDateTime )
 
         console.log('current coords',curentLocation)
+        console.log('lng:',curentLocation.lng, 'dateTime',inputDateTime)
         console.log('current grinvich time', dateAndTimeUTCConvert)
 
 

@@ -72,7 +72,7 @@
                         <label>
                             <input v-model="politickStatus" type="checkbox">
                         </label>
-                        <p class="personal-data-checbox__text">7₽ первые 7 дней, далее 499₽ раз в 7 дней. Отмена – в любой момент.</p>
+                        <p class="personal-data-checbox__text">7₽ первые 7 дней, далее 399₽ раз в 7 дней. Отмена – в любой момент.</p>
                     </div>
 
 

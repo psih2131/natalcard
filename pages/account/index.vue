@@ -429,7 +429,7 @@
                 </div>
                 <p class="natal-prognoz__block-title">Данна информация доступна только по подписке</p>
                 <div class="natal-prognoz__block-btn-row">
-                  <button class="natal-chart-list__btn-create" @click="goToPayPopupForm()">Оформить подписку</button>
+                  <button class="natal-chart-list__btn-create" @click="goToPayPopupForm()">Получить доступ</button>
                 </div>
                  
               </div>
@@ -482,7 +482,7 @@
                 </div>
                 <p class="natal-prognoz__block-title">Данна информация доступна только по подписке</p>
                 <div class="natal-prognoz__block-btn-row">
-                  <button class="natal-chart-list__btn-create" @click="goToPayPopupForm()">Оформить подписку</button>
+                  <button class="natal-chart-list__btn-create" @click="goToPayPopupForm()">Получить доступ</button>
                 </div>
                  
               </div>

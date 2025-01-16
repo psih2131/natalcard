@@ -911,10 +911,10 @@ export default {
 
         let inputDateTime = `${currentDate}T${currentTime}`
 
-        dateAndTimeUTCConvert = this.calculateTimeInUTC(curentLocation.lng, inputDateTime )
+        dateAndTimeUTCConvert = this.calculateTimeInUTC(curentLocation.lng, this.normalizeDateTime(inputDateTime) )
 
         console.log('current coords',curentLocation)
-        console.log('lng:',curentLocation.lng, 'dateTime',inputDateTime)
+        console.log('lng:',curentLocation.lng, 'dateTime',  this.normalizeDateTime(inputDateTime))
         console.log('current grinvich time', dateAndTimeUTCConvert)
 
 
@@ -931,6 +931,7 @@ export default {
 
       calculateTimeInUTC(longitude, inputDateTime) {
         console.log(longitude)
+        // let correctedDate = this.normalizeDateTime(inputDateTime);
         // Рассчитываем смещение в минутах по долготе (15° долготы = 1 час)
         let offset = Math.floor(longitude / 15) * 60;
         let curentData = moment(inputDateTime).utcOffset(offset).utc().format("YYYY-MM-DDTHH:mm:ss[Z]"); // Форматируем в ISO 8601 с Z
@@ -940,7 +941,34 @@ export default {
         return curentData
       },
 
+      normalizeDateTime(inputDateTime) {
+        return inputDateTime.replace(/T(\d):/, "T0$1:").replace(/:(\d)(?!\d)/, ":0$1");
+      },
 
+    //  calculateTimeInUTC(longitude, inputDateTime) {
+    //   console.log(longitude);
+
+    //   // Рассчитываем смещение в минутах по долготе (15° долготы = 1 час)
+    //   const offset = Math.floor(longitude / 15) * 60;
+
+    //   // Преобразуем входную дату в объект Date
+    //   const date = new Date(inputDateTime);
+
+    //   // Проверяем, валидна ли дата
+    //   if (isNaN(date.getTime())) {
+    //     throw new Error("Invalid date format");
+    //   }
+
+    //   // Применяем смещение (в миллисекундах) к исходной дате
+    //   const utcDate = new Date(date.getTime() - offset * 60 * 1000);
+
+    //   // Форматируем в ISO 8601 с Z (UTC)
+    //   const formattedDate = utcDate.toISOString();
+
+    //   console.log("calculateTimeInUTC:", formattedDate);
+
+    //   return formattedDate;
+    // },
     
 
       calculateEquatorialCoordinates(curentLocation, dateCurrent) {

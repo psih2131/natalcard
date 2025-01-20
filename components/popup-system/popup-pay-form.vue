@@ -157,7 +157,7 @@ methods: {
 
 
     if(checkboxValie == true && emailValid == true){
-        this.pay()
+        // this.pay()
     }
    },
 
@@ -169,11 +169,7 @@ methods: {
 
    pay() {
       // Создаем экземпляр виджета
-      const widget = new cp.CloudPayments({
-        language: "ru-RU",
-        tinkoffPaySupport: true,
-    
-    });
+      const widget = new cp.CloudPayments();
 
       // Вызов метода оплаты
       widget.pay(
@@ -184,7 +180,7 @@ methods: {
           amount: 7, // Сумма
           currency: 'RUB', // Валюта
           accountId: this.email, // Идентификатор плательщика
-          invoiceId: '1234567', // Номер заказа (необязательно)
+        //   invoiceId: '5678', // Номер заказа (необязательно)
           email: this.email, // Email плательщика (необязательно)
           skin: 'mini', // Дизайн виджета (необязательно)
           data: {
@@ -224,13 +220,13 @@ mounted(){
 },
 
 created() {
-  if (!window.cp) {
-    const script = document.createElement('script');
-    script.src = 'https://widget.cloudpayments.ru/bundles/cloudpayments.js';
-    script.async = true;
-    script.defer = true;
-    document.head.appendChild(script);
-  }
+//   if (!window.cp) {
+//     const script = document.createElement('script');
+//     script.src = 'https://widget.cloudpayments.ru/bundles/cloudpayments.js';
+//     script.async = true;
+//     script.defer = true;
+//     document.head.appendChild(script);
+//   }
 }
 
 }

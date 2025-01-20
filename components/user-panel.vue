@@ -139,8 +139,6 @@ methods: {
 
             this.userData = result
 
-            this.getUserDataServerQuery2()
-
 
         })
         .catch(error => {
@@ -153,34 +151,6 @@ methods: {
 
 
 
-    getUserDataServerQuery2(){
-        const url = this.store.urlQuery + '/wp-json/wp/v2/users/me/settings/'
-        let authToken = localStorage.getItem('jwtToken')
-
-        fetch(url, {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${authToken}`,
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-    
-        })
-        .then(response => response.json())
-        .then(result => {
-            console.log('Успешный ответ:', result);
-
-            this.userData2 = result
-
-
-        })
-        .catch(error => {
-            console.error('Ошибка:', error);
-        
-
-            // Обработка ошибки
-        });
-    },
 
 },
 

@@ -157,7 +157,7 @@ methods: {
 
 
     if(checkboxValie == true && emailValid == true){
-        // this.pay()
+        this.pay()
     }
    },
 
@@ -167,42 +167,42 @@ methods: {
     },
 
 
-//    pay() {
-//       // Создаем экземпляр виджета
-//       const widget = new cp.CloudPayments();
+   pay() {
+      // Создаем экземпляр виджета
+      const widget = new cp.CloudPayments();
 
-//       // Вызов метода оплаты
-//       widget.pay(
-//         'auth', // или 'charge'
-//         {
-//           publicId: 'pk_adbddb5a41758103a2294d99295d', // ID из личного кабинета
-//           description: 'Оплата товаров в example.com', // Назначение платежа
-//           amount: 7, // Сумма
-//           currency: 'RUB', // Валюта
-//           accountId: this.email, // Идентификатор плательщика
-//         //   invoiceId: '5678', // Номер заказа (необязательно)
-//           email: this.email, // Email плательщика (необязательно)
-//           skin: 'mini', // Дизайн виджета (необязательно)
-//           data: {
-//             myProp: 'myProp value', // Дополнительные данные
-//           },
-//         },
-//         {
-//           onSuccess(options) {
-//             // Действие при успешной оплате
-//             console.log('Оплата прошла успешно:', options);
-//           },
-//           onFail(reason, options) {
-//             // Действие при неуспешной оплате
-//             console.error('Оплата не удалась:', reason, options);
-//           },
-//           onComplete(paymentResult, options) {
-//             // Вызов аналитики или других действий
-//             console.log('Виджет завершил работу:', paymentResult, options);
-//           },
-//         }
-//       );
-//     },
+      // Вызов метода оплаты
+      widget.pay(
+        'auth', // или 'charge'
+        {
+          publicId: 'pk_adbddb5a41758103a2294d99295d', // ID из личного кабинета
+          description: 'Оплата товаров в example.com', // Назначение платежа
+          amount: 7, // Сумма
+          currency: 'RUB', // Валюта
+          accountId: this.email, // Идентификатор плательщика
+          invoiceId: '5678', // Номер заказа (необязательно)
+          email: this.email, // Email плательщика (необязательно)
+          skin: 'mini', // Дизайн виджета (необязательно)
+          data: {
+            myProp: 'myProp value', // Дополнительные данные
+          },
+        },
+        {
+          onSuccess(options) {
+            // Действие при успешной оплате
+            console.log('Оплата прошла успешно:', options);
+          },
+          onFail(reason, options) {
+            // Действие при неуспешной оплате
+            console.error('Оплата не удалась:', reason, options);
+          },
+          onComplete(paymentResult, options) {
+            // Вызов аналитики или других действий
+            console.log('Виджет завершил работу:', paymentResult, options);
+          },
+        }
+      );
+    },
    
 
 },
@@ -220,13 +220,13 @@ mounted(){
 },
 
 created() {
-//   if (!window.cp) {
-//     const script = document.createElement('script');
-//     script.src = 'https://widget.cloudpayments.ru/bundles/cloudpayments.js';
-//     script.async = true;
-//     script.defer = true;
-//     document.head.appendChild(script);
-//   }
+  if (!window.cp) {
+    const script = document.createElement('script');
+    script.src = 'https://widget.cloudpayments.ru/bundles/cloudpayments.js';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  }
 }
 
 }

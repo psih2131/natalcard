@@ -92,9 +92,9 @@ export default {
                 },100)
             }
 
-            // setTimeout(()=>{
-            //     this.closeInfoAlert()
-            // },3500)
+            setTimeout(()=>{
+                this.closeInfoAlert()
+            },3500)
 
            
         }

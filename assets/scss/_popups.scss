@@ -302,6 +302,18 @@
     }
 }
 
+.error-checkbox-text {
+    font-size: 12px;
+    color: $red2;
+    padding-left: 30px;
+}
+
+.popup-pay-form__fields-wrapper {
+    .field-input__text {
+        margin-top: 0;
+    }
+}
+
 
 
 @media only screen and (max-width: 825px) {

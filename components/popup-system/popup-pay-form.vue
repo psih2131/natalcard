@@ -55,7 +55,7 @@
 
 
                     <div class="button-popup-wrapper">
-                        <button class="button-popup">Получить доступ</button>
+                        <button @click="validation()" class="button-popup">Получить доступ</button>
                       </div>
 
                 </div>
@@ -70,10 +70,12 @@
 
                     <div class="personal-data-checbox">
                         <label>
-                            <input v-model="politickStatus" type="checkbox">
+                            <input v-model="payStatus" type="checkbox">
                         </label>
                         <p class="personal-data-checbox__text">7₽ первые 7 дней, далее 399₽ раз в 7 дней. Отмена – в любой момент.</p>
                     </div>
+
+                    <p class="error-checkbox-text" v-if="politickStatus == false || payStatus == false">{{payStatusError}}</p>
 
 
                 </div>
@@ -101,11 +103,21 @@ import component__input_field from '@/components/input-field.vue'
 
 export default {
 
+
 data() {
     return {
         store: null,
         email: null,
         emailError: null,
+        politickStatus: false,
+        
+
+        payStatus: false,
+        payStatusError:null,
+
+
+       
+      
     }
 },
 
@@ -122,6 +134,75 @@ methods: {
       
       this.store.changePopupStatus(false)
    },
+
+   validation(){
+    let emailValid = null
+    let checkboxValie = null
+    if(this.validateEmail(this.email) == true){
+        emailValid = true
+        this.emailError = null
+    }
+    else{
+        emailValid = false
+        this.emailError = 'Некоректный email'
+    }
+
+    if(this.politickStatus == true && this.payStatus == true){
+        checkboxValie = true
+    }
+    else{
+        this.payStatusError = 'Согласитесь с офрертой и политикой конфиденциальности'
+        checkboxValie = false
+    }
+
+
+    if(checkboxValie == true && emailValid == true){
+        this.pay()
+    }
+   },
+
+   validateEmail(email) {
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailPattern.test(email);
+    },
+
+
+   pay() {
+      // Создаем экземпляр виджета
+      const widget = new cp.CloudPayments();
+
+      // Вызов метода оплаты
+      widget.pay(
+        'auth', // или 'charge'
+        {
+          publicId: 'pk_adbddb5a41758103a2294d99295d', // ID из личного кабинета
+          description: 'Оплата товаров в example.com', // Назначение платежа
+          amount: 7, // Сумма
+          currency: 'RUB', // Валюта
+          accountId: this.email, // Идентификатор плательщика
+          invoiceId: '1234567', // Номер заказа (необязательно)
+          email: this.email, // Email плательщика (необязательно)
+          skin: 'mini', // Дизайн виджета (необязательно)
+          data: {
+            myProp: 'myProp value', // Дополнительные данные
+          },
+        },
+        {
+          onSuccess(options) {
+            // Действие при успешной оплате
+            console.log('Оплата прошла успешно:', options);
+          },
+          onFail(reason, options) {
+            // Действие при неуспешной оплате
+            console.error('Оплата не удалась:', reason, options);
+          },
+          onComplete(paymentResult, options) {
+            // Вызов аналитики или других действий
+            console.log('Виджет завершил работу:', paymentResult, options);
+          },
+        }
+      );
+    },
    
 
 },
@@ -137,6 +218,16 @@ watch: {
 mounted(){
     this.store = useCounterStore()
 },
+
+created() {
+  if (!window.cp) {
+    const script = document.createElement('script');
+    script.src = 'https://widget.cloudpayments.ru/bundles/cloudpayments.js';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  }
+}
 
 }
 </script>

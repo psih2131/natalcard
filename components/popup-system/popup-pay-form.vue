@@ -169,7 +169,11 @@ methods: {
 
    pay() {
       // Создаем экземпляр виджета
-      const widget = new cp.CloudPayments();
+      const widget = new cp.CloudPayments({
+        language: "ru-RU",
+        tinkoffPaySupport: true,
+    
+    });
 
       // Вызов метода оплаты
       widget.pay(

@@ -253,6 +253,24 @@ methods: {
         this.store = useCounterStore()
     },
 
+    created() {
+    // Проверяем, есть ли уже скрипт на странице
+    if (!document.querySelector('script[src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"]')) {
+      const script = document.createElement("script");
+      script.src = "https://widget.cloudpayments.ru/bundles/cloudpayments.js";
+      script.async = true; // Опционально: добавляет скрипт асинхронно
+      script.onload = () => {
+        console.log("CloudPayments.js успешно загружен");
+      };
+      script.onerror = () => {
+        console.error("Ошибка загрузки CloudPayments.js");
+      };
+      document.head.appendChild(script);
+    } else {
+      console.log("Скрипт CloudPayments.js уже добавлен");
+    }
+  },
+
 
 }
 </script>

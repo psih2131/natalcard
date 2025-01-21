@@ -4,17 +4,14 @@ import path from 'path';
 export default defineNuxtConfig({
   app: {
     head: {
-      meta: [
-        { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' },
 
-      ],
-      script: [
-        {
-          src: 'https://widget.cloudpayments.ru/bundles/cloudpayments.js',
-          async: true, // Определяет, будет ли скрипт асинхронным (по умолчанию false)
-          defer: true, // Определяет, будет ли скрипт отложенным (по умолчанию false)
-        }
-      ],
+      // script: [
+      //   {
+      //     src: 'https://widget.cloudpayments.ru/bundles/cloudpayments.js',
+      //     async: true, // Определяет, будет ли скрипт асинхронным (по умолчанию false)
+      //     defer: true, // Определяет, будет ли скрипт отложенным (по умолчанию false)
+      //   }
+      // ],
 
     },
   },
@@ -25,6 +22,7 @@ export default defineNuxtConfig({
       contentSecurityPolicy: {
 
         'img-src': ["*", 'data:', 'https://widget.cloudpayments.ru'],
+
 
         'default-src': [
           "*",

@@ -15,15 +15,17 @@ export default defineNuxtConfig({
   security: {
     headers: {
       contentSecurityPolicy: {
-        'img-src': ["*", 'data:'],
+        'img-src': ["*", 'data:', 'https://widget.cloudpayments.ru'],
 
         'default-src': [
+          "*",
           "https://google.com",
           "https://www.google.com",
           "https://pay.yandex.ru",
           "https://api-statist.dev-tcsgroup.io",
           "https://api-statist.tinkoff.ru",
           "https://forma.tinkoff.ru",
+          "https://widget.cloudpayments.ru"
         ],
         'connect-src': ["*", "https://widget.cloudpayments.ru"],
 

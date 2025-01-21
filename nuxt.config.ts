@@ -38,7 +38,8 @@ export default defineNuxtConfig({
           "https://api-statist.dev-tcsgroup.io",
           "https://api-statist.tinkoff.ru",
           "https://forma.tinkoff.ru",
-          "https://mc.yandex.com"
+          "https://mc.yandex.com",
+          'https://suggest-maps.yandex.net',
         ],
 
         'frame-src': [
@@ -46,6 +47,7 @@ export default defineNuxtConfig({
           'https://widget.cloudpayments.ru',
           'https://autofill.yandex.ru',
           'https://mc.yandex.com',
+          'https://suggest-maps.yandex.net',
         ],
 
 

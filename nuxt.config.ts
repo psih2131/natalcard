@@ -38,12 +38,14 @@ export default defineNuxtConfig({
           "https://api-statist.dev-tcsgroup.io",
           "https://api-statist.tinkoff.ru",
           "https://forma.tinkoff.ru",
+          "https://mc.yandex.com"
         ],
 
         'frame-src': [
           "'self'",
           'https://widget.cloudpayments.ru',
           'https://autofill.yandex.ru',
+          'https://mc.yandex.com',
         ],
 
 

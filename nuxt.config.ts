@@ -10,7 +10,7 @@ export default defineNuxtConfig({
       ],
       script: [
         {
-          // src: 'https://widget.cloudpayments.ru/bundles/cloudpayments.js', 
+          src: 'https://widget.cloudpayments.ru/bundles/cloudpayments.js',
           async: true, // Определяет, будет ли скрипт асинхронным (по умолчанию false)
           defer: true, // Определяет, будет ли скрипт отложенным (по умолчанию false)
         }

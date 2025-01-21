@@ -5,7 +5,7 @@
                 <path d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z" fill="#fff"/>
             </svg> 
         </div>
-<button @click="testrequest()">adsasd</button>
+
         <div class="popup-pay-form__wrapper">
             <div class="popup-pay-form__info">
                 <ul class="popup-pay-form__services-list">
@@ -131,35 +131,6 @@ components: {
 
 methods: {
 
-
-    testrequest(){
-        const url = 'https://api.cloudpayments.ru/test'
-        // let authToken = localStorage.getItem('jwtToken')
-
-        fetch(url, {
-        method: 'GET',
-        // headers: {
-        //     'Authorization': `Bearer ${authToken}`,
-        //     'Accept': 'application/json',
-        //     'Content-Type': 'application/json'
-        // },
-    
-        })
-        .then(response => response.json())
-        .then(result => {
-            console.log('Успешный ответ:', result);
-
-
-
-        })
-        .catch(error => {
-            console.error('Ошибка:', error);
-        
-
-            // Обработка ошибки
-        });
-    },
-
     closePopupStatus(){
       
       this.store.changePopupStatus(false)
@@ -189,6 +160,7 @@ methods: {
     if(checkboxValie == true && emailValid == true){
         this.pay()
     }
+    // this.pay()
    },
 
    validateEmail(email) {
@@ -202,54 +174,88 @@ methods: {
       const widget = new cp.CloudPayments();
 
       // Вызов метода оплаты
-      widget.pay(
-        'auth', // или 'charge'
-        {
-          publicId: 'pk_adbddb5a41758103a2294d99295d', // ID из личного кабинета
-          description: 'Оплата товаров в example.com', // Назначение платежа
-          amount: 7, // Сумма
-          currency: 'RUB', // Валюта
-          accountId: this.email, // Идентификатор плательщика
-          invoiceId: '5678', // Номер заказа (необязательно)
-          email: this.email, // Email плательщика (необязательно)
-          skin: 'mini', // Дизайн виджета (необязательно)
-          data: {
-            myProp: 'myProp value', // Дополнительные данные
-          },
+
+      var data = {};
+    data.CloudPayments = {
+        // CustomerReceipt: receipt, //чек для первого платежа
+        recurrent: {
+         interval: 'Week',
+         period: 1,
+         amount: 399, //сумма
+        //  customerReceipt: receipt //чек для регулярных платежей
+         }
+         }; //создание ежемесячной подписки
+
+
+      widget.pay('auth', // или 'charge'
+        { //options
+            publicId: 'pk_adbddb5a41f758103a2294d99295d', //id из личного кабинета
+            description: 'Оплата подписки в natalnaya-karta-online.ru', //назначение
+            amount: 7, //сумма
+            currency: 'RUB', //валюта
+            accountId: this.email, //идентификатор плательщика (необязательно)
+            invoiceId: '1234567', //номер заказа  (необязательно)
+            email: this.email, //email плательщика (необязательно)
+            skin: "mini", //дизайн виджета (необязательно)
+            autoClose: 3, //время в секундах до авто-закрытия виджета (необязательный)
+            data: {
+                myProp: 'myProp value'
+            },
+            configuration: {
+                common: {
+                    successRedirectUrl: "https://natalnaya-karta-online.ru/account", // адреса для перенаправления 
+                    failRedirectUrl: "https://natalnaya-karta-online.ru/account"        // при оплате по T-Pay
+                }
+            },
+            payer: { 
+                firstName: 'Тест',
+                lastName: 'Тестов',
+                middleName: 'Тестович',
+                birth: '1955-02-24',
+                address: 'тестовый проезд дом тест',
+                street: 'Lenina',
+                city: 'MO',
+                country: 'RU',
+                phone: '123',
+                postcode: '345'
+            }
         },
         {
-          onSuccess(options) {
-            // Действие при успешной оплате
-            console.log('Оплата прошла успешно:', options);
-          },
-          onFail(reason, options) {
-            // Действие при неуспешной оплате
-            console.error('Оплата не удалась:', reason, options);
-          },
-          onComplete(paymentResult, options) {
-            // Вызов аналитики или других действий
-            console.log('Виджет завершил работу:', paymentResult, options);
-          },
+            onSuccess: function (options) { // success
+                //действие при успешной оплате
+                console.log('Успешная оплата' ,options)
+            },
+            onFail: function (reason, options) { // fail
+                //действие при неуспешной оплате
+                console.log('неуспешная оплата' ,reason, options)
+            },
+            onComplete: function (paymentResult, options) { //Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.
+                //например вызов вашей аналитики
+                console.log('/Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.' ,paymentResult, options)
+            }
         }
-      );
+    )
+
     },
    
 
 },
 
-computed: {
+    computed: {
 
-},
+    },
 
-watch: {
+    watch: {
 
-},
+    },
 
-mounted(){
-    this.store = useCounterStore()
-},
-
+    mounted(){
+        this.store = useCounterStore()
+    },
 
 
 }
 </script>
+
+
+

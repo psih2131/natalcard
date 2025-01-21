@@ -5,19 +5,13 @@ export default defineNuxtConfig({
   app: {
     head: {
 
-      // script: [
-      //   {
-      //     src: 'https://widget.cloudpayments.ru/bundles/cloudpayments.js',
-      //     async: true, // Определяет, будет ли скрипт асинхронным (по умолчанию false)
-      //     defer: true, // Определяет, будет ли скрипт отложенным (по умолчанию false)
-      //   }
-      // ],
 
     },
   },
 
   security: {
-    nonce: true,
+
+
     headers: {
       contentSecurityPolicy: {
 
@@ -25,18 +19,32 @@ export default defineNuxtConfig({
 
 
         'default-src': [
-          "*",
+
           "https://google.com",
           "https://www.google.com",
           "https://pay.yandex.ru",
           "https://api-statist.dev-tcsgroup.io",
           "https://api-statist.tinkoff.ru",
           "https://forma.tinkoff.ru",
-          "https://widget.cloudpayments.ru"
         ],
-        'connect-src': ["*", "https://widget.cloudpayments.ru"],
+        'connect-src': [
+          "self",
+          "https:",
+          "http://localhost:3000",
+          "ws://localhost:3000",
+          "https://natalnaya-karta-online.ru/",
+          "https://widget.cloudpayments.ru",
+          "https://api.cloudpayments.ru",
+          "https://widget.cloudpayments.ru/monitoring-api/metric",
+          "https://widget.cloudpayments.ru/feature-api/config"
+        ],
 
-        'frame-src': ["*", "https://widget.cloudpayments.ru"],
+        'frame-src': ["*", "https://widget.cloudpayments.ru", "https://api.cloudpayments.ru"],
+
+        'frame-ancestors': [
+          "'self'",
+          "https://widget.cloudpayments.ru", "https://api.cloudpayments.ru"
+        ],
 
 
       },
@@ -47,31 +55,6 @@ export default defineNuxtConfig({
 
   },
 
-
-  // 'connect-src': [
-  //   "'self'", // Разрешает текущий домен
-  //   "https://api.cloudpayments.ru", // Добавляем домен CloudPayments
-  //   'https://widget.cloudpayments.ru/feature-api/config',  // Правильный путь к API
-  //   'https://widget.cloudpayments.ru',
-  //   "https://natalbase.ru",
-  //   "https://autofill.yandex.ru",
-  //   "https://google.com",
-  //   "https://www.google.com",
-  //   "https://pay.yandex.ru",
-  //   "https://api-statist.dev-tcsgroup.io",
-  //   "https://api-statist.tinkoff.ru",
-  //   "https://forma.tinkoff.ru",
-  //   "https://mc.yandex.com",
-  //   'https://suggest-maps.yandex.net',
-  // ],
-
-  // 'frame-src': [
-  //   "'self'",
-  //   'https://widget.cloudpayments.ru',
-  //   'https://autofill.yandex.ru',
-  //   'https://mc.yandex.com',
-  //   'https://suggest-maps.yandex.net',
-  // ],
 
 
   compatibilityDate: '2024-11-01',

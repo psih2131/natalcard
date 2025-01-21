@@ -17,6 +17,7 @@
     "luxon": "^3.5.0",
     "moment-timezone": "^0.5.46",
     "nuxt": "^3.14.1592",
+    "nuxt-security": "^2.1.5",
     "pinia": "^2.2.6",
     "swiper": "^11.1.15",
     "vue": "latest",

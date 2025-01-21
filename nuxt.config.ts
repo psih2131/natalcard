@@ -25,33 +25,9 @@ export default defineNuxtConfig({
           "https://api-statist.tinkoff.ru",
           "https://forma.tinkoff.ru",
         ],
-        'connect-src': ["*"],
-        // 'connect-src': [
-        //   "'self'", // Разрешает текущий домен
-        //   "https://api.cloudpayments.ru", // Добавляем домен CloudPayments
-        //   'https://widget.cloudpayments.ru/feature-api/config',  // Правильный путь к API
-        //   'https://widget.cloudpayments.ru',
-        //   "https://natalbase.ru",
-        //   "https://autofill.yandex.ru",
-        //   "https://google.com",
-        //   "https://www.google.com",
-        //   "https://pay.yandex.ru",
-        //   "https://api-statist.dev-tcsgroup.io",
-        //   "https://api-statist.tinkoff.ru",
-        //   "https://forma.tinkoff.ru",
-        //   "https://mc.yandex.com",
-        //   'https://suggest-maps.yandex.net',
-        // ],
+        'connect-src': ["*", "https://widget.cloudpayments.ru"],
 
-        // 'frame-src': [
-        //   "'self'",
-        //   'https://widget.cloudpayments.ru',
-        //   'https://autofill.yandex.ru',
-        //   'https://mc.yandex.com',
-        //   'https://suggest-maps.yandex.net',
-        // ],
-
-        'frame-src': ["*"],
+        'frame-src': ["*", "https://widget.cloudpayments.ru"],
 
 
       },
@@ -63,6 +39,30 @@ export default defineNuxtConfig({
   },
 
 
+  // 'connect-src': [
+  //   "'self'", // Разрешает текущий домен
+  //   "https://api.cloudpayments.ru", // Добавляем домен CloudPayments
+  //   'https://widget.cloudpayments.ru/feature-api/config',  // Правильный путь к API
+  //   'https://widget.cloudpayments.ru',
+  //   "https://natalbase.ru",
+  //   "https://autofill.yandex.ru",
+  //   "https://google.com",
+  //   "https://www.google.com",
+  //   "https://pay.yandex.ru",
+  //   "https://api-statist.dev-tcsgroup.io",
+  //   "https://api-statist.tinkoff.ru",
+  //   "https://forma.tinkoff.ru",
+  //   "https://mc.yandex.com",
+  //   'https://suggest-maps.yandex.net',
+  // ],
+
+  // 'frame-src': [
+  //   "'self'",
+  //   'https://widget.cloudpayments.ru',
+  //   'https://autofill.yandex.ru',
+  //   'https://mc.yandex.com',
+  //   'https://suggest-maps.yandex.net',
+  // ],
 
 
   compatibilityDate: '2024-11-01',

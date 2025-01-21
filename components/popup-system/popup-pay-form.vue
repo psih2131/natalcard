@@ -187,7 +187,7 @@ methods: {
          }; //создание ежемесячной подписки
 
 
-      widget.pay('auth', // или 'charge'
+      widget.pay('charge', // или 'charge'
         { //options
             publicId: 'pk_adbddb5a41f758103a2294d99295d', //id из личного кабинета
             description: 'Оплата подписки в natalnaya-karta-online.ru', //назначение
@@ -199,7 +199,7 @@ methods: {
             skin: "mini", //дизайн виджета (необязательно)
             autoClose: 3, //время в секундах до авто-закрытия виджета (необязательный)
             data: {
-                myProp: 'myProp value'
+                data
             },
             configuration: {
                 common: {

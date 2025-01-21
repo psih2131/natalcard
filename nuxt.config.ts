@@ -15,7 +15,7 @@ export default defineNuxtConfig({
   security: {
     headers: {
       contentSecurityPolicy: {
-        'img-src': ["*"],
+        'img-src': ["*", 'data:'],
 
         'default-src': [
           "https://google.com",

@@ -8,13 +8,22 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' },
 
       ],
+      script: [
+        {
+          // src: 'https://widget.cloudpayments.ru/bundles/cloudpayments.js', 
+          async: true, // Определяет, будет ли скрипт асинхронным (по умолчанию false)
+          defer: true, // Определяет, будет ли скрипт отложенным (по умолчанию false)
+        }
+      ],
 
     },
   },
 
   security: {
+    nonce: true,
     headers: {
       contentSecurityPolicy: {
+
         'img-src': ["*", 'data:', 'https://widget.cloudpayments.ru'],
 
         'default-src': [

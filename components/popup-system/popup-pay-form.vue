@@ -5,7 +5,7 @@
                 <path d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z" fill="#fff"/>
             </svg> 
         </div>
-
+<button @click="testrequest()">adsasd</button>
         <div class="popup-pay-form__wrapper">
             <div class="popup-pay-form__info">
                 <ul class="popup-pay-form__services-list">
@@ -130,6 +130,36 @@ components: {
 },
 
 methods: {
+
+
+    testrequest(){
+        const url = 'https://api.cloudpayments.ru/test'
+        // let authToken = localStorage.getItem('jwtToken')
+
+        fetch(url, {
+        method: 'GET',
+        // headers: {
+        //     'Authorization': `Bearer ${authToken}`,
+        //     'Accept': 'application/json',
+        //     'Content-Type': 'application/json'
+        // },
+    
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log('Успешный ответ:', result);
+
+
+
+        })
+        .catch(error => {
+            console.error('Ошибка:', error);
+        
+
+            // Обработка ошибки
+        });
+    },
+
     closePopupStatus(){
       
       this.store.changePopupStatus(false)
@@ -219,15 +249,7 @@ mounted(){
     this.store = useCounterStore()
 },
 
-created() {
-  if (!window.cp) {
-    const script = document.createElement('script');
-    script.src = 'https://widget.cloudpayments.ru/bundles/cloudpayments.js';
-    script.async = true;
-    script.defer = true;
-    document.head.appendChild(script);
-  }
-}
+
 
 }
 </script>

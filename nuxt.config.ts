@@ -42,7 +42,8 @@ export default defineNuxtConfig({
 
         'frame-src': [
           "'self'",
-          'https://widget.cloudpayments.ru', // Разрешаем загрузку фреймов с этого домена
+          'https://widget.cloudpayments.ru',
+          'https://autofill.yandex.ru',
         ],
 
 

@@ -1767,8 +1767,11 @@ export default {
               let currentPlanetData = targetHouse.планеты[planetsArray[i].name]
 
               console.log('ss',currentPlanetData)
+
+              htmlText = htmlText + `<h2>${planetsArray[i].name} в ${currentInHouse} доме</h2>` 
               htmlText = htmlText + '<br>'
               htmlText = htmlText + currentPlanetData.traktovka
+              htmlText = htmlText + '<br>'
               
             }
         

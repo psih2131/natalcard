@@ -9,6 +9,8 @@
 
         <popup__pay_form v-if="watchPopupName == 'popup-pay-form'" />
 
+        <popup__confirm_payment v-if="watchPopupName == 'confirm-payment-popup'" />
+
     </div>
 </template>
 
@@ -20,6 +22,7 @@ import popup__registration from '@/components/popup-system/popup-registration.vu
 import popup__login from '@/components/popup-system/popup-login.vue'
 import popup__user_created from '@/components/popup-system/popup-user-created.vue'
 import popup__pay_form from '@/components/popup-system/popup-pay-form.vue'
+import popup__confirm_payment from '@/components/popup-system/popup-confirm-payment.vue'
 
 
 
@@ -43,6 +46,7 @@ components: {
     popup__login,
     popup__user_created,
     popup__pay_form,
+    popup__confirm_payment,
 },
 
 methods: {

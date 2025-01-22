@@ -22,6 +22,9 @@ export const useCounterStore = defineStore('counter', () => {
         'alertType': null, 'alertText': ''
     })
 
+    const updateAccountDataRequest = ref(false)
+    const dataConfirmPayment = ref(false)
+
 
 
 
@@ -83,6 +86,20 @@ export const useCounterStore = defineStore('counter', () => {
     }
 
 
+    //change updateAccountDataRequest
+    function changeUpdateAccountDataRequest(newPopupStatus) {
+        updateAccountDataRequest.value = newPopupStatus
+        console.log('alert status', updateAccountDataRequest.value)
+    }
+
+
+    //change dataConfirmPayment
+    function changeDataConfirmPayment(newPopupStatus) {
+        dataConfirmPayment.value = newPopupStatus
+        console.log('alert status', dataConfirmPayment.value)
+    }
+
+
 
 
 
@@ -99,6 +116,8 @@ export const useCounterStore = defineStore('counter', () => {
         userMainData,
         autorisationStatus,
         infoAlertStatus,
+        updateAccountDataRequest,
+        dataConfirmPayment,
 
         changeAllPosts,
         changeAllCategory,
@@ -109,6 +128,8 @@ export const useCounterStore = defineStore('counter', () => {
         changeAutorisationStatus,
         checkTokenAutorisation,
         changeInfoAlertStatus,
+        changeUpdateAccountDataRequest,
+        changeDataConfirmPayment,
 
     }
 })

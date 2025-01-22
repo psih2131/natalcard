@@ -25,7 +25,20 @@
 
                         <div class="user-settings__data-table-row">
                             <div class="user-settings__table-name">Тип аккаунта:</div>
-                            <p class="user-settings__table-value">Базовый</p>
+                            <p class="user-settings__table-value">
+                                <template v-if="userData.status_account && +userData.status_account == 2">
+                                    <span>Платная подписка</span>
+                                </template>
+
+                                <template v-else>
+                                    <span>Базовый</span>
+                                </template>
+                            </p>
+                        </div>
+
+                        <div class="user-settings__data-table-row" v-if="userData.status_account && +userData.status_account == 2 && userData.email_payment">
+                            <div class="user-settings__table-name">Email подписки:</div>
+                            <p class="user-settings__table-value">{{ userData.email_payment }}</p>
                         </div>
     
                         <div class="user-settings__data-table-row">
@@ -45,7 +58,7 @@
     
                     </div>
                     <div class="user-settings__data-table-btn-row">
-                        <button class="edit-btn">Отменить подписку</button>
+                        <a href="https://my.cloudpayments.ru/" target="_blank" class="edit-btn">Отменить подписку</a>
                         <button class="logout-btn" @click="logout()">Выйти из аккаунта</button>
                         <button class="del-btn" @click="delAccount()">Удалить аккаунт</button>
                     </div>

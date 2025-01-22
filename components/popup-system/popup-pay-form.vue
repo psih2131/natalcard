@@ -178,9 +178,9 @@ methods: {
             Items: [//товарные позиции
                  {
                     label: 'Оплата подписки в natalnaya-karta-online.ru', //наименование товара
-                    price: 1, //цена
+                    price: 2, //цена
                     quantity: 1, //количество
-                    amount: 1, //сумма
+                    amount: 2, //сумма
 
                 }
             ],
@@ -189,7 +189,7 @@ methods: {
             isBso: false, //чек является бланком строгой отчетности
             amounts:
             {
-                electronic: 1, // Сумма оплаты электронными деньгами
+                electronic: 2, // Сумма оплаты электронными деньгами
                 advancePayment: 0.00, // Сумма из предоплаты (зачетом аванса) (2 знака после точки)
                 credit: 0.00, // Сумма постоплатой(в кредит) (2 знака после точки)
                 provision: 0.00 // Сумма оплаты встречным предоставлением (сертификаты, др. мат.ценности) (2 знака после точки)
@@ -202,7 +202,7 @@ methods: {
         recurrent: {
          interval: 'Day',
          period: 1,
-         amount: 1, //сумма
+         amount: 2, //сумма
          customerReceipt: receipt //чек для регулярных платежей
          }
          }; //создание ежемесячной подписки
@@ -211,15 +211,16 @@ methods: {
       widget.pay('charge', // или 'charge'
         { //options
             
-            publicId: 'pk_adbddb5a41f758103a2294d99295d', //id из личного кабинета
-            description: 'Оплата подписки в natalnaya-karta-online.ru', //назначение
+            // publicId: 'pk_adbddb5a41f758103a2294d99295d', 
+            // description: 'Оплата подписки в natalnaya-karta-online.ru', 
+            publicId: 'pk_9ab0152a34deeb6f72cab8d5b2f1a', //id из личного кабинета
+            description: 'Оплата подписки в natalnaya-karta-online.ru тест', //назначение
             amount: 1, //сумма
             currency: 'RUB', //валюта
             accountId: this.email, //идентификатор плательщика (необязательно)
-            invoiceId: '1234567', //номер заказа  (необязательно)
             email: this.email, //email плательщика (необязательно)
             skin: "mini", //дизайн виджета (необязательно)
-            autoClose: 3, //время в секундах до авто-закрытия виджета (необязательный)
+            // autoClose: 3, //время в секундах до авто-закрытия виджета (необязательный)
             data: {
                 data
             },
@@ -242,19 +243,35 @@ methods: {
             //     postcode: '345'
             // }
         },
+
+
+        
         {
-            onSuccess: function (options) { // success
+            onSuccess:  (options) => { // success
                 //действие при успешной оплате
+               
+               
                 console.log('Успешная оплата' ,options)
-                this.successPayMethod()
+                let storeForPay = useCounterStore()
+                storeForPay.changePopupName('confirm-payment-popup')
+                storeForPay.changeDataConfirmPayment(options)
+             
+                
             },
-            onFail: function (reason, options) { // fail
+            onFail:  (reason, options) => { // fail
                 //действие при неуспешной оплате
                 console.log('неуспешная оплата' ,reason, options)
+
+                storeForPay.changePopupName('confirm-payment-popup')
+                storeForPay.changePopupStatus(false)
+
+                
             },
-            onComplete: function (paymentResult, options) { //Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.
+            onComplete:  (paymentResult, options) => { //Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.
                 //например вызов вашей аналитики
+               
                 console.log('/Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.' ,paymentResult, options)
+                // storeForPay.changePopupName('confirm-payment-popup')
             }
         }
     )
@@ -262,11 +279,6 @@ methods: {
     },
 
 
-    successPayMethod(){
-        console.log('Успешная оплата')
-        alert('оплата прошла')
-    },
-   
 
 },
 

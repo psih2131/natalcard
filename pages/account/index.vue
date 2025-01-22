@@ -13,6 +13,7 @@
         </div>
       </section>
 
+
       
 
 
@@ -1444,10 +1445,10 @@ export default {
 
                 this.userData = result
 
-                if(this.userData.acf && this.userData.acf.тип_акаунта){
-                  this.typeAccount = +this.userData.acf.тип_акаунта
+                if(this.userData.status_account){
+                  this.typeAccount = +this.userData.status_account
 
-                  this.checkApiSubscriptions()
+                  // this.checkApiSubscriptions()
                 }
                 else{
                   this.typeAccount = 1
@@ -1463,6 +1464,12 @@ export default {
                 // Обработка ошибки
             });
         },
+
+
+        
+
+
+        
 
          //check user pay subscriptions
         checkApiSubscriptions(){
@@ -1542,6 +1549,8 @@ export default {
                 alert('чтото пошло не так')
             });
         },
+
+
 
 
         //delete natal chart
@@ -1776,11 +1785,20 @@ export default {
     },
 
     computed: {
-
+      getUserUptadeSroreRequest(){
+        let compStore  = useCounterStore()
+        return compStore.updateAccountDataRequest
+      }
     },
 
     watch: {
+      getUserUptadeSroreRequest(newValue, oldValue){
+        if(newValue == true){
+          this.typeAccount = 2
+          this.store.changeUpdateAccountDataRequest(false)
+        }
 
+      }
     },
 
     mounted(){

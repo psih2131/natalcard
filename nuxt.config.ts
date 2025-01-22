@@ -18,7 +18,18 @@ export default defineNuxtConfig({
         'img-src': ["*", 'data:', 'https://widget.cloudpayments.ru'],
 
 
-        'default-src': [
+        // 'default-src': [
+
+        //   "https://google.com",
+        //   "https://www.google.com",
+        //   "https://pay.yandex.ru",
+        //   "https://api-statist.dev-tcsgroup.io",
+        //   "https://api-statist.tinkoff.ru",
+        //   "https://forma.tinkoff.ru",
+        // ],
+        'connect-src': [
+          "self",
+          "https:",
 
           "https://google.com",
           "https://www.google.com",
@@ -26,13 +37,12 @@ export default defineNuxtConfig({
           "https://api-statist.dev-tcsgroup.io",
           "https://api-statist.tinkoff.ru",
           "https://forma.tinkoff.ru",
-        ],
-        'connect-src': [
-          "self",
-          "https:",
+
           "http://localhost:3000",
           "ws://localhost:3000",
           "https://natalnaya-karta-online.ru/",
+          "ws://natalnaya-karta-online.ru/",
+
           "https://widget.cloudpayments.ru",
           "https://api.cloudpayments.ru",
           "https://widget.cloudpayments.ru/monitoring-api/metric",

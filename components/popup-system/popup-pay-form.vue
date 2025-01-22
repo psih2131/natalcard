@@ -198,9 +198,9 @@ methods: {
             email: this.email, //email плательщика (необязательно)
             skin: "mini", //дизайн виджета (необязательно)
             autoClose: 3, //время в секундах до авто-закрытия виджета (необязательный)
-            // data: {
-            //     data
-            // },
+            data: {
+                data
+            },
             configuration: {
                 common: {
                     successRedirectUrl: "https://natalnaya-karta-online.ru/account", // адреса для перенаправления 

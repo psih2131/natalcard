@@ -174,15 +174,36 @@ methods: {
       const widget = new cp.CloudPayments();
 
       // Вызов метода оплаты
+      var receipt = {
+            Items: [//товарные позиции
+                 {
+                    label: 'Оплата подписки в natalnaya-karta-online.ru', //наименование товара
+                    price: 1, //цена
+                    quantity: 1, //количество
+                    amount: 1, //сумма
+
+                }
+            ],
+
+            email: this.email, //e-mail покупателя, если нужно отправить письмо с чеком
+            isBso: false, //чек является бланком строгой отчетности
+            amounts:
+            {
+                electronic: 1, // Сумма оплаты электронными деньгами
+                advancePayment: 0.00, // Сумма из предоплаты (зачетом аванса) (2 знака после точки)
+                credit: 0.00, // Сумма постоплатой(в кредит) (2 знака после точки)
+                provision: 0.00 // Сумма оплаты встречным предоставлением (сертификаты, др. мат.ценности) (2 знака после точки)
+            }
+        };
 
       var data = {};
     data.CloudPayments = {
         // CustomerReceipt: receipt, //чек для первого платежа
         recurrent: {
-         interval: 'Week',
+         interval: 'Day',
          period: 1,
-         amount: 399, //сумма
-        //  customerReceipt: receipt //чек для регулярных платежей
+         amount: 1, //сумма
+         customerReceipt: receipt //чек для регулярных платежей
          }
          }; //создание ежемесячной подписки
 
@@ -191,7 +212,7 @@ methods: {
         { //options
             publicId: 'pk_adbddb5a41f758103a2294d99295d', //id из личного кабинета
             description: 'Оплата подписки в natalnaya-karta-online.ru', //назначение
-            amount: 7, //сумма
+            amount: 1, //сумма
             currency: 'RUB', //валюта
             accountId: this.email, //идентификатор плательщика (необязательно)
             invoiceId: '1234567', //номер заказа  (необязательно)
@@ -207,23 +228,24 @@ methods: {
                     failRedirectUrl: "https://natalnaya-karta-online.ru/account"        // при оплате по T-Pay
                 }
             },
-            payer: { 
-                firstName: 'Тест',
-                lastName: 'Тестов',
-                middleName: 'Тестович',
-                birth: '1955-02-24',
-                address: 'тестовый проезд дом тест',
-                street: 'Lenina',
-                city: 'MO',
-                country: 'RU',
-                phone: '123',
-                postcode: '345'
-            }
+            // payer: { 
+            //     firstName: 'Тест',
+            //     lastName: 'Тестов',
+            //     middleName: 'Тестович',
+            //     birth: '1955-02-24',
+            //     address: 'тестовый проезд дом тест',
+            //     street: 'Lenina',
+            //     city: 'MO',
+            //     country: 'RU',
+            //     phone: '123',
+            //     postcode: '345'
+            // }
         },
         {
             onSuccess: function (options) { // success
                 //действие при успешной оплате
                 console.log('Успешная оплата' ,options)
+                this.successPayMethod()
             },
             onFail: function (reason, options) { // fail
                 //действие при неуспешной оплате
@@ -236,6 +258,12 @@ methods: {
         }
     )
 
+    },
+
+
+    successPayMethod(){
+        console.log('Успешная оплата')
+        alert('оплата прошла')
     },
    
 

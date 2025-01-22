@@ -1446,6 +1446,8 @@ export default {
 
                 if(this.userData.acf && this.userData.acf.тип_акаунта){
                   this.typeAccount = +this.userData.acf.тип_акаунта
+
+                  this.checkApiSubscriptions()
                 }
                 else{
                   this.typeAccount = 1
@@ -1459,6 +1461,38 @@ export default {
             
     
                 // Обработка ошибки
+            });
+        },
+
+         //check user pay subscriptions
+        checkApiSubscriptions(){
+          // Убедитесь, что Public ID и API Secret заменены на ваши тестовые данные
+          const publicID = "pk_adbddb5a41f758103a2294d99295d"; // Замените на ваш Public ID
+          const apiSecret = "94103b47579608718fe2f0f010141d54"; // Замените на ваш API Secret
+
+          // Адрес тестового метода
+          const url = "https://api.cloudpayments.ru/test";
+
+          // Создаем HTTP Basic Auth строку
+          const credentials = btoa(`${publicID}:${apiSecret}`);
+
+          // Конфигурация fetch-запроса
+          const options = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Basic ${credentials}`, // Добавляем заголовок для аутентификации
+            },
+          };
+
+          // Выполняем запрос
+          fetch(url, options)
+            .then((response) => response.json()) // Парсим JSON-ответ
+            .then((data) => {
+              console.log("Ответ от API:", data); // Логируем ответ
+            })
+            .catch((error) => {
+              console.error("Ошибка при запросе:", error); // Логируем ошибку
             });
         },
 

@@ -210,6 +210,7 @@ methods: {
 
       widget.pay('charge', // или 'charge'
         { //options
+            
             publicId: 'pk_adbddb5a41f758103a2294d99295d', //id из личного кабинета
             description: 'Оплата подписки в natalnaya-karta-online.ru', //назначение
             amount: 1, //сумма

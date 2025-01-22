@@ -178,9 +178,9 @@ methods: {
             Items: [//товарные позиции
                  {
                     label: 'Оплата подписки в natalnaya-karta-online.ru', //наименование товара
-                    price: 2, //цена
+                    price: 5, //цена
                     quantity: 1, //количество
-                    amount: 2, //сумма
+                    amount: 5, //сумма
 
                 }
             ],
@@ -189,7 +189,7 @@ methods: {
             isBso: false, //чек является бланком строгой отчетности
             amounts:
             {
-                electronic: 2, // Сумма оплаты электронными деньгами
+                electronic:52, // Сумма оплаты электронными деньгами
                 advancePayment: 0.00, // Сумма из предоплаты (зачетом аванса) (2 знака после точки)
                 credit: 0.00, // Сумма постоплатой(в кредит) (2 знака после точки)
                 provision: 0.00 // Сумма оплаты встречным предоставлением (сертификаты, др. мат.ценности) (2 знака после точки)
@@ -202,7 +202,7 @@ methods: {
         recurrent: {
          interval: 'Day',
          period: 1,
-         amount: 2, //сумма
+         amount: 5, //сумма
          customerReceipt: receipt //чек для регулярных платежей
          }
          }; //создание ежемесячной подписки
@@ -211,10 +211,10 @@ methods: {
       widget.pay('charge', // или 'charge'
         { //options
             
-            // publicId: 'pk_adbddb5a41f758103a2294d99295d', 
-            // description: 'Оплата подписки в natalnaya-karta-online.ru', 
-            publicId: 'pk_9ab0152a34deeb6f72cab8d5b2f1a', //id из личного кабинета
-            description: 'Оплата подписки в natalnaya-karta-online.ru тест', //назначение
+            publicId: 'pk_adbddb5a41f758103a2294d99295d', 
+            description: 'Оплата подписки в natalnaya-karta-online.ru', 
+            // publicId: 'pk_9ab0152a34deeb6f72cab8d5b2f1a', //id из личного кабинета
+            // description: 'Оплата подписки в natalnaya-karta-online.ru тест', //назначение
             amount: 1, //сумма
             currency: 'RUB', //валюта
             accountId: this.email, //идентификатор плательщика (необязательно)

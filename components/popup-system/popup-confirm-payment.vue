@@ -10,7 +10,7 @@
             <img src="@/assets/img/born_img-1.png" alt="" class="popup-user-created__img">
         </div>
         <p class="popup-user-created__title">Успех</p>
-        <p class="popup-user-created__subtitle">Все функции аккаунта разблокирываны</p>
+        <p class="popup-user-created__subtitle">Все функции аккаунта разблокированы</p>
 
     </div>
 </template>

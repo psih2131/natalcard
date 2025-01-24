@@ -189,7 +189,7 @@ methods: {
             isBso: false, //чек является бланком строгой отчетности
             amounts:
             {
-                electronic:52, // Сумма оплаты электронными деньгами
+                electronic:5, // Сумма оплаты электронными деньгами
                 advancePayment: 0.00, // Сумма из предоплаты (зачетом аванса) (2 знака после точки)
                 credit: 0.00, // Сумма постоплатой(в кредит) (2 знака после точки)
                 provision: 0.00 // Сумма оплаты встречным предоставлением (сертификаты, др. мат.ценности) (2 знака после точки)
@@ -198,7 +198,7 @@ methods: {
 
       var data = {};
     data.CloudPayments = {
-        // CustomerReceipt: receipt, //чек для первого платежа
+        CustomerReceipt: receipt, //чек для первого платежа
         recurrent: {
          interval: 'Day',
          period: 1,
@@ -221,9 +221,7 @@ methods: {
             email: this.email, //email плательщика (необязательно)
             skin: "mini", //дизайн виджета (необязательно)
             // autoClose: 3, //время в секундах до авто-закрытия виджета (необязательный)
-            data: {
-                data
-            },
+            data: data,
             configuration: {
                 common: {
                     successRedirectUrl: "https://natalnaya-karta-online.ru/account", // адреса для перенаправления 
